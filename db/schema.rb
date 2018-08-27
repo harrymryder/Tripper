@@ -10,10 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_132421) do
+ActiveRecord::Schema.define(version: 2018_08_27_141119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "legs", force: :cascade do |t|
+    t.bigint "trip_id"
+    t.bigint "point_of_interest_id"
+    t.integer "visit_order"
+    t.integer "travel_time"
+    t.integer "length_of_stay"
+    t.string "travel_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["point_of_interest_id"], name: "index_legs_on_point_of_interest_id"
+    t.index ["trip_id"], name: "index_legs_on_trip_id"
+  end
+
+  create_table "point_of_interests", force: :cascade do |t|
+    t.string "name"
+    t.float "lat"
+    t.float "long"
+    t.text "description"
+    t.string "photo"
+    t.string "url"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id"
+    t.string "start_location"
+    t.string "end_location"
+    t.float "start_lat"
+    t.float "start_long"
+    t.date "start_date"
+    t.date "end_date"
+    t.string "travel_type"
+    t.string "photo"
+    t.integer "preferred_travel_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trips_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +70,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_132421) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "legs", "point_of_interests"
+  add_foreign_key "legs", "trips"
+  add_foreign_key "trips", "users"
 end
