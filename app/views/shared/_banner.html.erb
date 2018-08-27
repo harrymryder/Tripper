@@ -3,8 +3,12 @@
     <h1>Tripper</h1>
     <p>Sketch your journey!</p>
 
+    <%= simple_form_for @trip do |f| %>
+      <%= f.input :start_location, placeholder: 'Location' %>
+      <%= f.input :start_date, placeholder: 'From' %>
+      <%= f.input :end_date, placeholder: 'Until' %>
+      <%= f.button :submit, class: "btn btn-primary btn-lg" %>
+    <% end %>
 
-
-    <a class="btn btn-primary btn-lg">Start now</a>
   </div>
 </div>
