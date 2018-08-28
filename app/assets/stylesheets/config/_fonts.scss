@@ -1,10 +1,11 @@
 // Import Google fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono:300,400');
 
 // Define fonts for body and headers
 
-$headers-font: 'Spectral', serif;
-$body-font: 'Karla', sans-serif;
+$headers-font: 'Roboto Mono', monospace;
+$body-font: 'Roboto', sans-serif;
 // To use a font file (.woff) uncomment following lines
 // @font-face {
 //   font-family: "Font Name";
