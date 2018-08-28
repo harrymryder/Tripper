@@ -3,19 +3,17 @@
     <h1>Tripper</h1>
     <p><span id="banner-typed-text"></span></p>
 
-    <% form_for @trip do |f| %>
-      <%= f.autocomplete_field :start_location, autocomplete_brand_name_products_path %>
-    <% end %>
-
     <%= simple_form_for @trip do |f| %>
-      <%= f.input :start_location, placeholder: 'Location', label:false, :url => autocomplete_brand_name_products_path, :as => :autocomplete %>
+      <%= f.input :start_location, placeholder: 'Location', label:false,  input_html: { id: 'start-location-autocomplete' } %>
       <%= f.input :start_date, placeholder: 'From', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
       <%= f.input :end_date, placeholder: 'Until', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
       <%= f.button :submit, class: "form-btm btn btn-primary btn-lg" %>
     <% end %>
+    <div id="suggestions"></div>
+    <div id="points-of-interest" data-poi='<%= @points_of_interest.to_json %>'></div>
   </div>
 </div>
 
 <%= javascript_pack_tag 'datepicker' %>
-<%= javascript_include_tag "autocomplete-rails.js" %>
+<%= javascript_pack_tag 'autocomplete' %>
 

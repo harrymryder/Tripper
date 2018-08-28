@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @trip = Trip.new
+    @points_of_interest = PointOfInterest.all
   end
 
   # def search
