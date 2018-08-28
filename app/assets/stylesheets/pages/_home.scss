@@ -1,1 +1,52 @@
 // Specific CSS for your home-page
+#new_trip {
+  display: inline-flex;
+  .form-btm {
+    margin: 0 5px;
+  }
+  .form-group {
+    margin: 0 5px;
+    align-self: center;
+  }
+}
+
+.sub-heading {
+  color: rgb(127, 127, 127);
+}
+
+.trand-cities {
+  color: black;
+  background-color: white;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.content-container {
+  display: flex;
+}
+
+.free-trip-p-container {
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+  margin-top: 25px;
+  padding: 0 100px;
+  span {
+    color: rgb(127, 127, 127);
+  }
+}
+
+.icon {
+  margin-right: 20px;
+  font-size: 40px;
+  color: rgb(127, 127, 127);
+}
+.cities-cards-heading {
+  color: black;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.card-container {
+  padding: 50px 0;
+}
