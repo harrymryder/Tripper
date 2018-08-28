@@ -76,6 +76,7 @@ GEM
       railties (>= 3.0)
     font-awesome-sass (5.0.13)
       sassc (>= 1.11)
+    geocoder (1.5.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.1.0)
@@ -216,8 +217,10 @@ DEPENDENCIES
   dotenv-rails
   flatpickr_rails
   font-awesome-sass (~> 5.0.9)
+  geocoder
   jbuilder (~> 2.0)
   listen (~> 3.0.5)
+  nokogiri
   pg (~> 0.21)
   pry-byebug
   pry-rails
