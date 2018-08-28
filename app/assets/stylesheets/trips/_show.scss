@@ -13,11 +13,13 @@
   h4 {
     font-family: $headers-font;
     color: $primary-color;
-    margin-bottom: 50px;
+  } p {
+    color: $gray;
+    font-family: $body-font;
   }
 }
 .cards-container {
-  height: calc(100% - 75px);
+  height: calc(100% - 115px);
   overflow-y: scroll;
   direction: rtl;
 }
