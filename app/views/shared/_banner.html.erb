@@ -3,10 +3,12 @@
     <h1>Tripper</h1>
     <p><span id="banner-typed-text"></span></p>
 
+    <% form_for @trip do |f| %>
+      <%= f.autocomplete_field :start_location, autocomplete_brand_name_products_path %>
+    <% end %>
+
     <%= simple_form_for @trip do |f| %>
-      <%#= select_tag "timezone", options_from_collection_for_select(
-            ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo }.sort_by { |tzinfo| tzinfo.name }, :name, :name) %>
-      <%= f.input :start_location, placeholder: 'Location', label:false %>
+      <%= f.input :start_location, placeholder: 'Location', label:false, :url => autocomplete_brand_name_products_path, :as => :autocomplete %>
       <%= f.input :start_date, placeholder: 'From', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
       <%= f.input :end_date, placeholder: 'Until', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
       <%= f.button :submit, class: "form-btm btn btn-primary btn-lg" %>
@@ -15,4 +17,5 @@
 </div>
 
 <%= javascript_pack_tag 'datepicker' %>
+<%= javascript_include_tag "autocomplete-rails.js" %>
 
