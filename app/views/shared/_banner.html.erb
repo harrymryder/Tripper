@@ -4,15 +4,16 @@
     <p><span id="banner-typed-text"></span></p>
 
     <%= simple_form_for @trip do |f| %>
-      <%#= select_tag "timezone", options_from_collection_for_select(
-            ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo }.sort_by { |tzinfo| tzinfo.name }, :name, :name) %>
-      <%= f.input :start_location, placeholder: 'Location', label:false %>
+      <%= f.input :start_location, placeholder: 'Location', label:false,  input_html: { id: 'start-location-autocomplete' } %>
       <%= f.input :start_date, placeholder: 'From', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
       <%= f.input :end_date, placeholder: 'Until', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
       <%= f.button :submit, class: "form-btm btn btn-primary btn-lg" %>
     <% end %>
+    <div id="suggestions"></div>
+    <div id="points-of-interest" data-poi='<%= @points_of_interest.to_json %>'></div>
   </div>
 </div>
 
 <%= javascript_pack_tag 'datepicker' %>
+<%= javascript_pack_tag 'autocomplete' %>
 

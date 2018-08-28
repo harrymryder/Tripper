@@ -21,3 +21,27 @@
   opacity: 0.6;
   margin-bottom: 30px;
 }
+
+#suggestions {
+  background-color: white;
+  width: 200px;
+  margin: 0 0 0 5px;
+}
+
+.suggestion {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  width: 100%;
+  &:hover {
+    background-color: lightgrey;
+  }
+  p {
+    padding: 15px;
+    font-size: 14px;
+    margin: 0;
+    color: black;
+  }
+}
