@@ -27,7 +27,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/harryryder/cjldifzen78292spkv4kqj586',
     center: [markers[0][1], markers[0][0]],
-    zoom: 11.15
+    zoom: 4
 });
 
 map.on('load', function () {
