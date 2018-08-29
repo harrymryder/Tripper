@@ -55,5 +55,14 @@
   border-radius: 5px;
   height: calc(100vh - 125px);
 }
+.mapboxgl-popup {
+  max-width: 400px;
+  font-family: $body-font;
+  color: $gray;
+  font-size: 15px;
+  padding: 20px;
+}
 
-
+.marker {
+    cursor: pointer;
+}
