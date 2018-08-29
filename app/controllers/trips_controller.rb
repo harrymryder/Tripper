@@ -8,7 +8,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-    @markers = PointOfInterest.where(country: "Germany").map do |poi|
+    @markers = PointOfInterest.where(country: "Japan").map do |poi|
       [poi.lat, poi.long, poi.name, poi.description, poi.url]
     end
     # @markers = PointOfInterest.where(country: params[:country]).where.not(lat: nil, lng: nil).map do |poi|
@@ -23,7 +23,6 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.user = current_user
-    raise
     if @trip.save
       redirect_to trip_path(@trip)
     else
