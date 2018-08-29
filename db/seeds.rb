@@ -1,11 +1,12 @@
 puts 'Cleaning database...'
 PointOfInterest.destroy_all
 
-scrape("Thailand")
-scrape("India")
-scrape("Vietnam")
+# scrape("India")
+# scrape("Vietnam")
+# scrape("Thailand")
 
 def scrape(location)
+array = []
   require 'open-uri'
   require 'nokogiri'
   # poi_scrape = {}
@@ -29,14 +30,14 @@ def scrape(location)
     lat = results.first.coordinates[0]
     lng = results.first.coordinates[1]
 
-    #use code to test in terminal
+    # use code to test in terminal
     # poi_scrape = {}
 
     # poi_scrape[:name] =  name
     # poi_scrape[:description] = description
     # poi_scrape[:image] = image
-    # poi_scrape[:lat] = lat
-    # poi_scrape[:lng] = lng
+    # # poi_scrape[:lat] = lat
+    # # poi_scrape[:lng] = lng
 
     # array << poi_scrape
 
@@ -48,7 +49,6 @@ def scrape(location)
       image: image
     })
   end
+  # return array
 end
-
-
-
+# p scrape("Thailand")
