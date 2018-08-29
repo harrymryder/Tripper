@@ -4,18 +4,20 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dyd
 const map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/harryryder/cjldifzen78292spkv4kqj586',
-zoom: 4.0
+zoom: 0
 });
 
-const pin = document.getElementById('map').dataset['pin']
+map.addControl(new mapboxgl.FullscreenControl());
 
+const pin = document.getElementById('map').dataset['pin']
 console.log(pin)
+
 
 map.on('load', function() {
     map.loadImage(pin, function(error, image) {
         if (error) throw error;
 
-        map.addImage('cat', image);
+        map.addImage('pin', image);
         map.addLayer({
             "id": "points",
             "type": "symbol",
@@ -25,83 +27,51 @@ map.on('load', function() {
                     "type": "FeatureCollection",
                     "features": [{
                         "type": "Feature",
+                        "properties": {
+                          "description": "<strong>Big Ben</strong><p>Big Ben is Great!</p>"
+                        },
                         "geometry": {
                             "type": "Point",
-                            "coordinates": [0, 0]
+                            "coordinates": [-3.9328740744334425, 38.98169520864454]
                         }
                     }]
                 }
             },
             "layout": {
-                "icon-image": "cat",
-                "icon-size": 0.25
+                "icon-image": "pin",
+                "icon-size": 0.5
             }
         });
     });
 });
 
-// var geojson = {
-//     "type": "FeatureCollection",
-//     "features": [
-//         {
-//             "type": "Feature",
-//             "properties": {
-//                 "message": "Foo",
-//                 "iconSize": [60, 60]
-//             },
-//             "geometry": {
-//                 "type": "Point",
-//                 "coordinates": [
-//                     -66.324462890625,
-//                     -16.024695711685304
-//                 ]
-//             }
-//         },
-//         {
-//             "type": "Feature",
-//             "properties": {
-//                 "message": "Bar",
-//                 "iconSize": [50, 50]
-//             },
-//             "geometry": {
-//                 "type": "Point",
-//                 "coordinates": [
-//                     -61.2158203125,
-//                     -15.97189158092897
-//                 ]
-//             }
-//         },
-//         {
-//             "type": "Feature",
-//             "properties": {
-//                 "message": "Baz",
-//                 "iconSize": [40, 40]
-//             },
-//             "geometry": {
-//                 "type": "Point",
-//                 "coordinates": [
-//                     -63.29223632812499,
-//                     -18.28151823530889
-//                 ]
-//             }
-//         }
-//     ]
-// };
 
-// geojson.features.forEach(function(marker) {
-//     // create a DOM element for the marker
-//     var el = document.createElement('div');
-//     el.className = 'marker';
-//     el.style.backgroundImage = 'url(../app/assets/images/pin.png)';
-//     el.style.width = marker.properties.iconSize[0] + 'px';
-//     el.style.height = marker.properties.iconSize[1] + 'px';
+// "coordinates": [-3.4, 38.98169520864454]
 
-//     el.addEventListener('click', function() {
-//         window.alert(marker.properties.message);
-//     });
 
-//     // add marker to map
-//     new mapboxgl.Marker(el)
-//         .setLngLat(marker.geometry.coordinates)
-//         .addTo(map);
-// });
+map.on('click', 'points', function (e) {
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const description = e.features[0].properties.description;
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(map);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', 'points', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'points', function () {
+        map.getCanvas().style.cursor = '';
+    });
