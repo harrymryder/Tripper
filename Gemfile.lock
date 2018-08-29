@@ -82,6 +82,7 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    json (2.0.4)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -216,6 +217,7 @@ DEPENDENCIES
   font-awesome-sass (~> 5.0.9)
   geocoder
   jbuilder (~> 2.0)
+  json
   listen (~> 3.0.5)
   nokogiri
   pg (~> 0.21)
