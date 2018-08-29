@@ -6,19 +6,20 @@ class TripsController < ApplicationController
   #   @trips = Trip.all
   # end
 
-  # def show
-  #   @trip = Trip.find(params[:id])
-  # end
+  def show
+    @trip = Trip.find(params[:id])
+  end
 
   def new
     @trip = Trip.new
   end
 
   def create
-    trip = Trip.new(trip_params)
-    trip.user = current_user
-    if trip.save
-      redirect_to trip_path(trip)
+    @trip = Trip.new(trip_params)
+    @trip.user = current_user
+    raise
+    if @trip.save
+      redirect_to trip_path(@trip)
     else
       redirect_to root_path
     end
