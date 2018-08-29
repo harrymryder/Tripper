@@ -14,3 +14,5 @@ yarn-error.log
 .byebug_history
 .env*
 .env*
+poi_data_a_2_l.json*
+poi_data_m_2_z.json*

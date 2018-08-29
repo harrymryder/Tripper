@@ -1,3 +1,3 @@
 //= require rails-ujs
-//= require flatpickr
+//= require jquery
 //= require_tree .

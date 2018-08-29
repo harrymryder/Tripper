@@ -6,19 +6,26 @@ class TripsController < ApplicationController
   #   @trips = Trip.all
   # end
 
-  # def show
-  #   @trip = Trip.find(params[:id])
-  # end
+  def show
+    @trip = Trip.find(params[:id])
+    @markers = PointOfInterest.where(country: "Germany").map do |poi|
+      [poi.lat, poi.long, poi.name, poi.description, poi.url]
+    end
+    # @markers = PointOfInterest.where(country: params[:country]).where.not(lat: nil, lng: nil).map do |poi|
+    #   [poi.lat, poi.long]
+    # end
+  end
 
   def new
     @trip = Trip.new
   end
 
   def create
-    trip = Trip.new(trip_params)
-    trip.user = current_user
-    if trip.save
-      redirect_to trip_path(trip)
+    @trip = Trip.new(trip_params)
+    @trip.user = current_user
+    raise
+    if @trip.save
+      redirect_to trip_path(@trip)
     else
       redirect_to root_path
     end

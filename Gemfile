@@ -10,6 +10,7 @@ gem 'puma'
 gem 'rails', '5.2.1'
 gem 'redis'
 gem 'geocoder'
+gem 'json'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
@@ -19,9 +20,6 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
-gem 'flatpickr_rails'
-
-
 
 group :development do
   gem 'web-console', '>= 3.3.0'

@@ -3,5 +3,18 @@ class PagesController < ApplicationController
 
   def home
     @trip = Trip.new
+    @points_of_interest = PointOfInterest.all
   end
+
+  # def search
+  #   term  = params[:term]
+  #   cities = City.where('name LIKE ? OR code LIKE ?', "%#{term}%", "%#{term}%").order(:name)
+  #   render json: cities.map { |city|
+  #     {
+  #       id:    city.id,
+  #       label: city.inspect,
+  #       value: city.full_name
+  #     }
+  #   }
+  # end
 end
