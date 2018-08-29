@@ -9,29 +9,26 @@ puts 'Generating new database of POI...'
 Dir.foreach("#{Rails.root}/app/assets/json/country_poi_data/") do |file|
   next if file == '.' or file == '..'
   puts "working on #{file}"
-  serialized_poi = File.read(file)
+  read_file = "#{Rails.root}/app/assets/json/country_poi_data/#{file}"
+  serialized_poi = File.read(read_file)
   puts "read complete"
 
   pois = JSON.parse(serialized_poi)
   puts "parse complete"
-
-  p pois
-
-  # p pois[0].first
-  # pois.each do |poi|
-  #   print poi
-  #   Point_of_interest.new({
-  #     name:
-  #     lat:
-  #     long:
-  #     description:
-  #     photo:
-  #     url:
-  #     type:
-  #     country:
-  #     })
-  # end
+  pois.each do |poi|
+    next if poi.nil?
+    PointOfInterest.create!({
+      name: poi["Name"],
+      lat: poi["Latitude"],
+      long: poi["Longitude"],
+      description: poi["Description"],
+      url: poi["Url"],
+      country: poi["Country"],
+      })
+  end
 end
+
+
 
 # scrape("Thailand")
 # scrape("India")
