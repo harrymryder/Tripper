@@ -1,14 +1,8 @@
 puts 'Cleaning database...'
-PointOfInterest.destroy_all
-
-scrape("Thailand")
-scrape("India")
-scrape("Vietnam")
 
 def scrape(location)
   require 'open-uri'
   require 'nokogiri'
-  # poi_scrape = {}
 
   url = "https://www.audleytravel.com/#{location}/places-to-go"
 
@@ -16,6 +10,7 @@ def scrape(location)
   html_doc = Nokogiri::HTML(html_file)
 
   html_doc.css('.card').each do |card|
+    array = []
     image = card.at('.img-wrapper img')['data-src']
     name = card.css('.cardALink').inner_html.sub('amp;','').sub('&', 'and')
     link = card.css('.cardALink').attribute('href')
@@ -25,30 +20,28 @@ def scrape(location)
 
     description = html_doc_description.css('.intro').inner_html.sub('amp;','').sub('&', 'and')
 
-    results = Geocoder.search("#{name}")
-    lat = results.first.coordinates[0]
-    lng = results.first.coordinates[1]
+    # results = Geocoder.search("#{name}")
+    # lat = results.first.coordinates[0]
+    # lng = results.first.coordinates[1]
 
-    #use code to test in terminal
-    # poi_scrape = {}
+    poi_scrape = {}
 
-    # poi_scrape[:name] =  name
-    # poi_scrape[:description] = description
-    # poi_scrape[:image] = image
+    poi_scrape[:name] =  name
+    poi_scrape[:description] = description
+    poi_scrape[:photo] = image
     # poi_scrape[:lat] = lat
     # poi_scrape[:lng] = lng
 
-    # array << poi_scrape
-
-    PointOfInterest.create!({
-      name: name
-      description: description
-      lat: lat
-      lng: lng
-      image: image
-    })
+    PointOfInterest.create!(poi_scrape)
   end
 end
+
+scrape("japan")
+scrape("thailand")
+scrape("vietnam")
+scrape("laos")
+
+puts 'Done'
 
 
 
