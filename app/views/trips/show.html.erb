@@ -1,3 +1,10 @@
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
 <div class="trip-container">
 
   <div class="cards-wrap">
@@ -13,16 +20,18 @@
   </div>
 
   <div class="map-container">
-
-    <div id='map' data-pin = "<%= asset_path('pin.png') %>"></div>
-    <%= javascript_pack_tag "map" %>
+    <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-markers = "<%= @markers.to_json %>"></div>
   </div>
 
 </div>
 
 
+<%= javascript_pack_tag "map" %>
 <!-- <script type="text/javascript">
       document.getElementById('cards-container').onscroll = function() {
         console.log("scrolling");
       };
 </script> -->
+<script>
+
+</script>
