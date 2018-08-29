@@ -2,6 +2,11 @@ require 'json'
 
 
 puts 'Cleaning database...'
+
+def scrape(location)
+  require 'open-uri'
+  require 'nokogiri'
+
 PointOfInterest.destroy_all
 
 puts 'Generating new database of POI...'
@@ -29,6 +34,11 @@ Dir.foreach("#{Rails.root}/app/assets/json/country_poi_data/") do |file|
 end
 
 
+  html_doc.css('.card').each do |card|
+    array = []
+    image = card.at('.img-wrapper img')['data-src']
+    name = card.css('.cardALink').inner_html.sub('amp;','').sub('&', 'and')
+    link = card.css('.cardALink').attribute('href')
 
 # scrape("Thailand")
 # scrape("India")
@@ -38,6 +48,23 @@ end
 #   require 'open-uri'
 #   require 'nokogiri'
 #   # poi_scrape = {}
+
+
+    # results = Geocoder.search("#{name}")
+    # lat = results.first.coordinates[0]
+    # lng = results.first.coordinates[1]
+
+    poi_scrape = {}
+
+    poi_scrape[:name] =  name
+    poi_scrape[:description] = description
+    poi_scrape[:photo] = image
+    # poi_scrape[:lat] = lat
+    # poi_scrape[:lng] = lng
+
+    PointOfInterest.create!(poi_scrape)
+  end
+end
 
 #   url = "https://www.audleytravel.com/#{location}/places-to-go"
 
@@ -78,6 +105,13 @@ end
 #     })
 #   end
 # end
+
+scrape("japan")
+scrape("thailand")
+scrape("vietnam")
+scrape("laos")
+
+puts 'Done'
 
 
 
