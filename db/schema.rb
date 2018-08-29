@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2018_08_29_131153) do
     t.float "long"
     t.text "description"
     t.string "photo"
-    t.string "url",
+    t.string "url"
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

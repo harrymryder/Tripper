@@ -1,57 +1,64 @@
+const mapElement = document.getElementById("map");
+
 const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
-
-mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
-const map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/harryryder/cjldifzen78292spkv4kqj586',
-zoom: 0
-});
-
-map.addControl(new mapboxgl.FullscreenControl());
+const markers = JSON.parse(mapElement.dataset.markers);
 
 const pin = document.getElementById('map').dataset['pin']
-console.log(pin)
 
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
 
-map.on('load', function() {
-    map.loadImage(pin, function(error, image) {
-        if (error) throw error;
+poi_features = []
+markers.forEach((marker) => {
+  poi = {
+    "type": "Feature",
+    "properties": {
+        "description": `<strong>${marker[2]}</strong><p>${marker[3]}</p>`,
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [marker[1],marker[0]]
+    }
+  }
+  poi_features.push(poi)
+});
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxjOGpweGc0bmNuM3Fxa3UzMnppOXo4In0.xn2gXm4R3rTIQaGNEXQdWg';
 
-        map.addImage('pin', image);
-        map.addLayer({
-            "id": "points",
-            "type": "symbol",
-            "source": {
-                "type": "geojson",
-                "data": {
-                    "type": "FeatureCollection",
-                    "features": [{
-                        "type": "Feature",
-                        "properties": {
-                          "description": "<strong>Big Ben</strong><p>Big Ben is Great!</p>"
-                        },
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [-3.9328740744334425, 38.98169520864454]
-                        }
-                    }]
-                }
-            },
-            "layout": {
-                "icon-image": "pin",
-                "icon-size": 0.5
-            }
-        });
-    });
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/harryryder/cjldifzen78292spkv4kqj586',
+    center: [markers[0][1], markers[0][0]],
+    zoom: 11.15
 });
 
+map.on('load', function () {
+    // Add a layer showing the places.
+    map.loadImage(pin, function(error, image) {
+      if (error) throw error;
 
-// "coordinates": [-3.4, 38.98169520864454]
+      map.addImage('pin', image);
+      map.addLayer({
+          "id": "places",
+          "type": "symbol",
+          "source": {
+              "type": "geojson",
+              "data": {
+                  "type": "FeatureCollection",
+                  "features": poi_features
+              }
+          },
+          "layout": {
+              "icon-image": "pin",
+              "icon-size": 0.5,
+              "icon-allow-overlap": true
+          }
+      });
+    });
 
-
-map.on('click', 'points', function (e) {
-        const coordinates = e.features[0].geometry.coordinates.slice();
-        const description = e.features[0].properties.description;
+    // When a click event occurs on a feature in the places layer, open a popup at the
+    // location of the feature, with description HTML from its properties.
+    map.on('click', 'places', function (e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        var description = e.features[0].properties.description;
 
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
@@ -67,11 +74,12 @@ map.on('click', 'points', function (e) {
     });
 
     // Change the cursor to a pointer when the mouse is over the places layer.
-    map.on('mouseenter', 'points', function () {
+    map.on('mouseenter', 'places', function () {
         map.getCanvas().style.cursor = 'pointer';
     });
 
     // Change it back to a pointer when it leaves.
-    map.on('mouseleave', 'points', function () {
+    map.on('mouseleave', 'places', function () {
         map.getCanvas().style.cursor = '';
     });
+});
