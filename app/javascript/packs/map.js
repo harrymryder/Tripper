@@ -40,8 +40,11 @@ const markers = JSON.parse(mapElement.dataset.markers);
 
 const pin = document.getElementById('map').dataset['pin']
 
-const cardID = document.querySelector('.card-box').dataset['name']
-console.log(cardID)
+const card = document.querySelector('.card-box')
+if (card) {
+  const cardID = card.dataset['name']
+  console.log(cardID)
+}
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
 

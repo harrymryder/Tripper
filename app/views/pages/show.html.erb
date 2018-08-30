@@ -28,14 +28,19 @@
         </div>
       </div>
     <% end %>
-    <% tripou = Trip.find(params[:active].to_i) %>
-    <% @markers = PointOfInterest.where(country: tripou.start_location).map do |poi| %>
-      <% [poi.lat, poi.long, poi.name, poi.description, poi.url] %>
-    <% end %>
+    <% if params[:active] %>
+      <% tripou = Trip.find(params[:active].to_i) %>
+      <% @markers = PointOfInterest.where(country: tripou.start_location).map do |poi| %>
+        <% [poi.lat, poi.long, poi.name, poi.description, poi.url] %>
+      <% end %>
 
-    <div class="map-container">
-      <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-markers = "<%= @markers.to_json %>"></div>
-    </div>
+      <div class="map-container">
+        <div id='map' data-pin="<%= asset_path('pin.png')%>" data-markers="<%= @markers.to_json %>"></div>
+      </div>
+    <% else %>
+      <div class="map-container">
+      </div>
+    <% end %>
   </div>
 </div>
 
