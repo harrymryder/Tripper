@@ -73,7 +73,7 @@ def audleytravel_scrape(location)
 
     poi_scrape[:name] =  name
     poi_scrape[:description] = description
-    poi_scrape[:image] = image
+    # poi_scrape[:image] = image
     # poi_scrape[:lat] = lat
     # poi_scrape[:lng] = lng
 
