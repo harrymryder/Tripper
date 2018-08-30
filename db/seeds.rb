@@ -1,11 +1,11 @@
 require 'json'
-
+require 'open-uri'
+require 'nokogiri'
 
 puts 'Cleaning database...'
 
-def scrape(location)
-  require 'open-uri'
-  require 'nokogiri'
+# def scrape(location)
+
 
 PointOfInterest.destroy_all
 
@@ -32,7 +32,6 @@ Dir.foreach("#{Rails.root}/app/assets/json/country_poi_data/") do |file|
       })
     end
   end
-end
 
 
 #   html_doc.css('.card').each do |card|
@@ -88,7 +87,7 @@ end
 # audleytravel_scrape("vietnam")
 # audleytravel_scrape("laos")
 
-puts 'Done'
+# puts 'Done'
 
 
   # poi_scrape = {}
