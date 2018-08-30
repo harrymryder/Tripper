@@ -1,11 +1,11 @@
 require 'json'
-
+require 'open-uri'
+require 'nokogiri'
 
 puts 'Cleaning database...'
 
-def scrape(location)
-  require 'open-uri'
-  require 'nokogiri'
+# def scrape(location)
+
 
 PointOfInterest.destroy_all
 
@@ -32,7 +32,6 @@ Dir.foreach("#{Rails.root}/app/assets/json/country_poi_data/") do |file|
       })
     end
   end
-end
 
 
 #   html_doc.css('.card').each do |card|
@@ -45,50 +44,50 @@ end
 # scrape("India")
 # scrape("Vietnam")
 
-def audleytravel_scrape(location)
-  require 'open-uri'
-  require 'nokogiri'
+# def audleytravel_scrape(location)
+#   require 'open-uri'
+#   require 'nokogiri'
 
-  url = "https://www.audleytravel.com/#{location}/places-to-go"
+#   url = "https://www.audleytravel.com/#{location}/places-to-go"
 
-  html_file = open(url)
-  html_doc = Nokogiri::HTML(html_file)
+#   html_file = open(url)
+#   html_doc = Nokogiri::HTML(html_file)
 
-  html_doc.css('.card').each do |card|
-    image = card.at('.img-wrapper img')['data-src']
-    name = card.css('.cardALink').inner_html.sub('amp;','').sub('&', 'and')
-    link = card.css('.cardALink').attribute('href')
+#   html_doc.css('.card').each do |card|
+#     image = card.at('.img-wrapper img')['data-src']
+#     name = card.css('.cardALink').inner_html.sub('amp;','').sub('&', 'and')
+#     link = card.css('.cardALink').attribute('href')
 
-    html_file_description = open("https://www.audleytravel.com#{link}")
-    html_doc_description = Nokogiri::HTML(html_file_description)
+#     html_file_description = open("https://www.audleytravel.com#{link}")
+#     html_doc_description = Nokogiri::HTML(html_file_description)
 
-    description = html_doc_description.css('.intro').inner_html.sub('amp;','').sub('&', 'and')
+#     description = html_doc_description.css('.intro').inner_html.sub('amp;','').sub('&', 'and')
 
-    # results = Geocoder.search("#{name}")
-    # lat = results.first.coordinates[0]
-    # lng = results.first.coordinates[1]
+#     # results = Geocoder.search("#{name}")
+#     # lat = results.first.coordinates[0]
+#     # lng = results.first.coordinates[1]
 
-    #use code to test in terminal
-    poi_scrape = {}
+#     #use code to test in terminal
+#     poi_scrape = {}
 
-    poi_scrape[:name] =  name
-    poi_scrape[:description] = description
-    # poi_scrape[:image] = image
-    # poi_scrape[:lat] = lat
-    # poi_scrape[:lng] = lng
+#     poi_scrape[:name] =  name
+#     poi_scrape[:description] = description
+#     # poi_scrape[:image] = image
+#     # poi_scrape[:lat] = lat
+#     # poi_scrape[:lng] = lng
 
 
 
-    PointOfInterest.create!(poi_scrape)
-  end
-end
+#     PointOfInterest.create!(poi_scrape)
+#   end
+# end
 
-audleytravel_scrape("japan")
-audleytravel_scrape("thailand")
-audleytravel_scrape("vietnam")
-audleytravel_scrape("laos")
+# audleytravel_scrape("japan")
+# audleytravel_scrape("thailand")
+# audleytravel_scrape("vietnam")
+# audleytravel_scrape("laos")
 
-puts 'Done'
+# puts 'Done'
 
 
   # poi_scrape = {}
