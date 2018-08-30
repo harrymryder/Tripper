@@ -12,19 +12,24 @@
     <p>Drag and drop activites to personally tailor your trip</p>
     <div class="cards-container">
       <div class="row">
-        <% @pois = PointOfInterest.all %>
-        <% @pois.each do |poi| %>
-          <div class="col-xs-12 ">
-            <div class="card-box card-live">
-                <h5><%= poi.name %></h5>
-                <i class="fas fa-plus plus"></i>
-                <div class="card-description">
-                  <p><%= poi.description %></p>
-                </div>
-                <%#= image_tag poi.photo, class: 'card-img'%>
+
+        <% @pois_show = PointOfInterest.where(country: @trip.start_location)%>
+        <% @pois_show.each do |poi| %>
+            <div class="col-xs-12 ">
+              <div class="card-box card-live" id="#{poi.name}">
+                  <h5><%= poi.name %></h5>
+
+
+                  <i class="fas fa-plus plus"></i>
+                  <div class="card-description">
+                    <p><%= link_to "create leg", new_trip_leg_path(params[:trip_id])%> <%= poi.description %></p>
+
+                  </div>
+                  <%#= image_tag poi.photo, class: 'card-img'%>
+              </div>
             </div>
-          </div>
-          <% end %>
+
+        <% end %>
       </div>
     </div>
   </div>
