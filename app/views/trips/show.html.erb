@@ -13,7 +13,7 @@
     <div class="cards-container">
       <div class="row">
 
-        <% @pois = PointOfInterest.all %>
+        <% @pois = PointOfInterest.where(country: @trip.start_location) %>
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
             <div class="card-box card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
@@ -25,7 +25,7 @@
                 <%#= image_tag poi.photo, class: 'card-img'%>
 
             </div>
-
+          </div>
         <% end %>
       </div>
     </div>
@@ -43,5 +43,3 @@
         console.log("scrolling");
       };
 </script> -->
-
-
