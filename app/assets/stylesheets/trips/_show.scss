@@ -61,6 +61,16 @@
   color: $gray;
   font-size: 15px;
   padding: 20px;
+  p {
+    padding: 10px;
+    margin: 0;
+    font-family: $headers-font;
+    text-transform: uppercase;
+    font-weight: lighter;
+  }
+  .mapboxgl-popup-content {
+    padding: 5px 10px;
+  }
 }
 
 

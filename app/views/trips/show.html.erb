@@ -13,20 +13,17 @@
     <div class="cards-container">
       <div class="row">
 
-        <% @pois_show = PointOfInterest.where(country: @trip.start_location)%>
-        <% @pois_show.each do |poi| %>
-            <div class="col-xs-12 ">
-              <div class="card-box card-live" id="#{poi.name}">
-                  <h5><%= poi.name %></h5>
+        <% @pois = PointOfInterest.all %>
+        <% @pois.each do |poi| %>
+          <div class="col-xs-12 ">
+            <div class="card-box card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+                <h5><%= poi.name %></h5>
+                <i class="fas fa-plus plus"></i>
+                <div class="card-description">
+                  <p><%= poi.description %></p>
+                </div>
+                <%#= image_tag poi.photo, class: 'card-img'%>
 
-
-                  <i class="fas fa-plus plus"></i>
-                  <div class="card-description">
-                    <p><%= link_to "create leg", new_trip_leg_path(params[:trip_id])%> <%= poi.description %></p>
-
-                  </div>
-                  <%#= image_tag poi.photo, class: 'card-img'%>
-              </div>
             </div>
 
         <% end %>
@@ -35,11 +32,10 @@
   </div>
 
   <div class="map-container">
-    <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-markers = "<%= @markers.to_json %>"></div>
+    <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-blue-pin = "<%= asset_path('blue-pin.png')%>" data-markers = "<%= @markers.to_json %>"></div>
   </div>
 
 </div>
-
 
 <%= javascript_pack_tag "map" %>
 <!-- <script type="text/javascript">
@@ -48,5 +44,4 @@
       };
 </script> -->
 
-<%= javascript_pack_tag "cards" %>
 
