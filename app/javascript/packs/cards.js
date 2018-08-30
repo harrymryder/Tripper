@@ -1,10 +1,13 @@
 const cards = document.querySelectorAll(".card-box");
 
 const plus = document.querySelectorAll(".plus");
+
 // plus.addEventListener("click", (event) => {
 //   console.log("hi there")
 //   card.classList.toggle("card-active");
 // });
+
+// const cardID = document.getElementById(`${markers[2]}`)
 
 plus.forEach(function(element) {
   element.addEventListener("click", (event) => {

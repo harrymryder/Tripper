@@ -15,7 +15,7 @@
         <% @pois = PointOfInterest.all %>
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
-            <div class="card-box card-live">
+            <div class="card-box card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
                 <h5><%= poi.name %></h5>
                 <i class="fas fa-plus plus"></i>
                 <div class="card-description">
@@ -30,11 +30,10 @@
   </div>
 
   <div class="map-container">
-    <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-markers = "<%= @markers.to_json %>"></div>
+    <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-blue-pin = "<%= asset_path('blue-pin.png')%>" data-markers = "<%= @markers.to_json %>"></div>
   </div>
 
 </div>
-
 
 <%= javascript_pack_tag "map" %>
 <!-- <script type="text/javascript">
@@ -43,5 +42,4 @@
       };
 </script> -->
 
-<%= javascript_pack_tag "cards" %>
 
