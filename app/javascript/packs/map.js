@@ -2,12 +2,17 @@ const cards = document.querySelectorAll(".card-box");
 
 const plus = document.querySelectorAll(".plus");
 
-// plus.addEventListener("click", (event) => {
-//   console.log("hi there")
-//   card.classList.toggle("card-active");
-// });
+const mapElement = document.getElementById("map");
 
-// const cardID = document.getElementById(`${markers[2]}`)
+const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+
+const markers = JSON.parse(mapElement.dataset.markers);
+
+const pin = document.getElementById('map').dataset['pin']
+
+const bluePin = document.getElementById('map').dataset['bluepin']
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
 
 plus.forEach(function(element) {
   element.addEventListener("click", (event) => {
@@ -24,43 +29,12 @@ plus.forEach(function(element) {
   });
 });
 
-
-
 var keepTrack = [];
 var currentSchedule = [];
 var currentRoute = null;
 var pointHopper = {};
 var pause = true;
 var speedFactor = 50;
-
-const mapElement = document.getElementById("map");
-
-const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
-const markers = JSON.parse(mapElement.dataset.markers);
-
-const pin = document.getElementById('map').dataset['pin']
-
-const cardID = document.querySelector('.card-box').dataset['name']
-console.log(cardID)
-
-mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
-
-// const addLeg = document.getElementById(`${marker[2]}`)
-
-// poi_features = []
-// markers.forEach((marker) => {
-//   // poi = {
-//   //   "type": "Feature",
-//   //   "properties": {
-//   //       "description": `<p>${marker[2]}</p>`
-//   //   },
-//   //   "geometry": {
-//   //       "type": "Point",
-//   //       "coordinates": [marker[1],marker[0]]
-//   //   }
-//   // }
-//   // poi_features.push(poi)
-// });
 
 var map = new mapboxgl.Map({
     container: 'map',
@@ -71,8 +45,8 @@ var map = new mapboxgl.Map({
 
 map.on('load', function () {
     // Add a layer showing the places.
-    map.loadImage(pin, function(error, image) {
-      map.addImage('pin', image);
+  map.loadImage(pin, function(error, image) {
+    map.addImage('pin', image);
     //   if (error) throw error;
       markers.forEach((marker) => {
         map.addLayer({
@@ -93,81 +67,113 @@ map.on('load', function () {
                       "coordinates": [marker[1],marker[0]]
                     }
                 }]
-            }
-          },
+              }
+            },
             "layout": {
                 "icon-image": "pin",
                 "icon-size": 0.5,
                 "icon-allow-overlap": true
             }
       });
-  // poi = {
-  //   "type": "Feature",
-  //   "properties": {
-  //       "description": `<p>${marker[2]}</p>`
-  //   },
-  //   "geometry": {
-  //       "type": "Point",
-  //       "coordinates": [marker[1],marker[0]]
-  //   }
-  // }
-  // poi_features.push(poi)
-    // });
 
     // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with description HTML from its properties.
-    markers.forEach((marker) => {
-      map.on('mouseover', `${marker[2]}`, (ev) => {
-        // console.log(`${marker[2]}`)
-        cards.forEach((card) => {
-          card.style.borderStyle = "none";
+      markers.forEach((marker) => {
+        map.on('mouseover', `${marker[2]}`, (ev) => {
+          // console.log(`${marker[2]}`)
+          cards.forEach((card) => {
+            card.style.borderStyle = "none";
+          })
+          let cardToLightUp = document.getElementById(`${marker[2]}`)
+          cardToLightUp.style.borderStyle = "solid";
+          cardToLightUp.style.borderColor = "red";
+        });
+
+        map.on('click', `${marker[2]}`, function (e) {
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          var description = e.features[0].properties.description;
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+          new mapboxgl.Popup()
+              .setLngLat(coordinates)
+              .setHTML(description)
+              .addTo(map);
+          console.log(description)
         })
-        let cardToLightUp = document.getElementById(`${marker[2]}`)
-        cardToLightUp.style.borderStyle = "solid";
-        cardToLightUp.style.borderColor = "red";
       });
-      map.on('click', `${marker[2]}`, function (e) {
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].properties.description;
-        // Ensure that if the map is zoomed out such that multiple
-        // copies of the feature are visible, the popup appears
-        // over the copy being pointed to.
-        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+
+      // Change the cursor to a pointer when the mouse is over the places layer.
+      map.on('mouseenter', `${marker[2]}`, function () {
+          map.getCanvas().style.cursor = 'pointer';
+      });
+
+      // Change it back to a pointer when it leaves.
+      map.on('mouseleave', `${marker[2]}`, function () {
+          map.getCanvas().style.cursor = '';
+      });
+    });
+  });
+
+
+  // Add blue pin if POI selected for trip
+
+  map.loadImage(bluePin, function(error, image) {
+    map.addImage('bluepin', image);
+      // if card is selected by user
+      // add blue pin to map over red pin with same coordinates as markers
+      // add map.on('click') for blue pins (same code as above)
+  });
+
+  // Generate and add route
+  // add new layer with an empty source - this will be used to display the route after API request
+  map.addSource('route', {
+    type: 'geojson',
+    data: nothing
+  });
+
+  map.addLayer({
+    id: 'routeline-active',
+      type: 'line',
+      source: 'route',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      paint: {
+        'line-color': '#3887be',
+        'line-width': {
+          base: 1,
+          stops: [[12, 3], [22, 12]]
         }
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(description)
-            .addTo(map);
-        console.log(description)
-      // let add = document.querySelector('.addLeg')
-      // add.addEventListener('click', (e) => {
-      //   // console.log(coordinates)
-      //   // console.log(legs)
-      //   // add layerlegs
-      //   newLeg(coordinates)
-      //   updateLegs(legs)
-      // })
-      })
-    });
-
-    // Change the cursor to a pointer when the mouse is over the places layer.
-    map.on('mouseenter', `${marker[2]}`, function () {
-        map.getCanvas().style.cursor = 'pointer';
-    });
-
-    // Change it back to a pointer when it leaves.
-    map.on('mouseleave', `${marker[2]}`, function () {
-        map.getCanvas().style.cursor = '';
-    });
-});
+      }
+    }, 'waterway-label');
 
 });
 
-});
+// var nothing = turf.featureCollection([]);
+
+// (coordinates in thailand)
+var nothing = turf.featureCollection([
+  turf.point( [13.752222, 100.493889]),
+  turf.point( [14.355, 100.565]),
+  turf.point( [18.795278, 98.998611])
+  ]);
 
 
-    // OPTIMISATION
+  // OPTIMISATION
+
+  // let add = document.querySelector('.addLeg')
+  // add.addEventListener('click', (e) => {
+  //   // console.log(coordinates)
+  //   // console.log(legs)
+  //   // add layerlegs
+  //   newLeg(coordinates)
+  //   updateLegs(legs)
+  // })
 
   //   map.addLayer({
   //     id: 'legs-symbol',
@@ -211,8 +217,3 @@ map.on('load', function () {
 //     .setData(geojson);
 // }
 
-// var legs = turf.featureCollection([
-//   turf.point( [-97.522259, 35.4691]),
-//   turf.point( [-97.502754, 35.463455]),
-//   turf.point( [-97.508269, 35.463245])
-//   ]);
