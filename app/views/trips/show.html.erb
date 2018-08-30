@@ -12,6 +12,7 @@
     <p>Drag and drop activites to personally tailor your trip</p>
     <div class="cards-container">
       <div class="row">
+
         <% @pois = PointOfInterest.all %>
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
@@ -22,9 +23,10 @@
                   <p><%= poi.description %></p>
                 </div>
                 <%#= image_tag poi.photo, class: 'card-img'%>
+
             </div>
-          </div>
-          <% end %>
+
+        <% end %>
       </div>
     </div>
   </div>
