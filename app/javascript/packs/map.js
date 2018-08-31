@@ -24,7 +24,6 @@ const legDurations = []
 fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/100.493889,13.752222;100.565,14.355;98.998611,18.795278?access_token=${mapboxgl.accessToken}`)
   .then(response => response.json())
   .then((data) => {
-    console.log(data)
     const tripLegs = data.trips[0].legs
     tripLegs.forEach((leg) => {
       const legDurationsInMinutes = leg.duration / 60
@@ -59,8 +58,8 @@ var count = 0
 var map = new mapboxgl.Map({
   container: 'map', // container id
   style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
-  center: startPoint, // starting position
-  zoom: 12 // starting zoom
+  center: [markers[0][1], markers[0][0]],
+  zoom: 4
 });
 
 map.on('load', function() {
