@@ -14,28 +14,38 @@
       </div>
     </div> -->
 
-    <h3>Your trips</h3>
-    <% @trips.each do |trip| %>
-      <div class="trips-list">
-        <div class="trips-left">
-          <%= link_to trip.start_location, page_path(current_user, active: trip.id) %>
-        </div>
-        <div class="trips-right">
-          <p>
-            <li>Location: <%= trip.start_location %></li>
-            <li>From <%= trip.start_date %> Until <%= trip.end_date %></li>
-          </p>
-        </div>
+    <h1>Your trips</h1>
+    <div class="dashboard-container">
+      <div>
+        <% @trips.each do |trip| %>
+          <div class="trips-list">
+            <div class="trips-left">
+              <p><%= link_to trip.start_location, page_path(current_user, active: trip.id) %> From <%= trip.start_date %> Until <%= trip.end_date %></p>
+            </div>
+            <!-- <div class="trips-right">
+              <p>Location: <%= trip.start_location %></p>
+              <p>From <%= trip.start_date %> Until <%= trip.end_date %></p>
+            </div> -->
+          </div>
+        <% end %>
       </div>
-    <% end %>
-    <% tripou = Trip.find(params[:active].to_i) %>
-    <% @markers = PointOfInterest.where(country: tripou.start_location).map do |poi| %>
-      <% [poi.lat, poi.long, poi.name, poi.description, poi.url] %>
-    <% end %>
 
-    <div class="map-container">
-      <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-markers = "<%= @markers.to_json %>"></div>
+
+
     </div>
+    <div class="dashboard-map-container">
+      <% if params[:active] %>
+        <% tripou = Trip.find(params[:active].to_i) %>
+        <% @markers = PointOfInterest.where(country: tripou.start_location).map do |poi| %>
+          <% [poi.lat, poi.long, poi.name, poi.description, poi.url] %>
+        <% end %>
+
+        <!-- <div class="map-container"> -->
+          <div id='map' data-pin="<%= asset_path('pin.png')%>" data-markers="<%= @markers.to_json %>"></div>
+        <!-- </div> -->
+      <% end %>
+    </div>
+
   </div>
 </div>
 

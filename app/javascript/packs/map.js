@@ -14,6 +14,8 @@ const bluePin = document.getElementById('map').dataset['bluepin']
 
 const optimizeButton = document.querySelector('.optimize-button')
 
+const legs = JSON.parse(mapElement.dataset.leglist);
+
 /////////////////////////////////
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
@@ -48,8 +50,14 @@ var currentRoute = null;
 var pointHopper = {};
 var pause = true;
 var speedFactor = 50;
-var legs = [[100.565,14.355],[98.998611, 18.795278]]
+// var legs = [[100.565,14.355],[98.998611, 18.795278]]
 var count = 0
+
+const card = document.querySelector('.card-box')
+if (card) {
+  const cardID = card.dataset['name']
+  console.log(cardID)
+}
 
 // Add your access token
 

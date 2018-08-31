@@ -1,13 +1,42 @@
 .cards-container{
   padding-left: 20px;
 }
-.card-box {
+.card-box-plus{
   position: relative;
   width: 290px;
   height: 180px;
   border-radius: 5px;
   border-style: solid;
   border-color: rgba(220,220,220,0.7);
+  border-width: 3px;
+  background-color: white;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 7px rgba(62, 9, 11, 0.3);
+  h5 {
+    position: absolute;
+    left: 10px;
+    font-size: 16px;
+    height: 40px;
+    font-family: $headers-font;
+    color: $primary-color;
+    text-transform: uppercase;
+  }
+  .card-description p {
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    font-size: 12px;
+    text-align: left !important;
+    padding: 0 3px;
+  }
+}
+.card-box-minus {
+  position: relative;
+  width: 290px;
+  height: 180px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: $red;
   border-width: 3px;
   background-color: white;
   margin-bottom: 15px;
