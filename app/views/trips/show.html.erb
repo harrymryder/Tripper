@@ -25,6 +25,8 @@
               <div class="card-description">
                 <% @id_poi = poi.id %>
                 <p><%= poi.description %></p>
+                <%= image_tag poi.photo, class: "card-img" %>
+
               </div>
             </div>
             <% else %>
@@ -38,6 +40,7 @@
               <div class="card-description">
                 <% @id_poi = poi.id %>
                 <p><%= poi.description %></p>
+                <%= image_tag poi.photo, class: "card-img" %>
               </div>
             </div>
             <% end %>
