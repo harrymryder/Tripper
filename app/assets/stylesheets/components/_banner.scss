@@ -94,3 +94,28 @@
     color: black;
   }
 }
+.form-btn {
+  height: 39px !important;
+  padding: 5px 30px;
+  font-size: 18px;
+  font-family: $headers-font;
+  text-transform: uppercase;
+  color: $light-gray;
+  border: none;
+  margin-left: 5px;
+  &:hover {
+    background-color: #d35252;
+  }
+}
+// .form-button {
+//   background-color: $red;
+//   color: $light-gray;
+//   padding: 20px 10px;
+//   font-family: $body-font;
+//   border-radius: 5px;
+//   height: 39px;
+//   width: 100px;
+//   &:hover {
+//     background-color: #fc4444;
+//   }
+// }

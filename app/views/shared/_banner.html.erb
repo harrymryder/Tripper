@@ -14,7 +14,10 @@
 
       <%= f.input :end_date, placeholder: 'Until', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
 
-      <%= f.button :submit, class: "form-btm btn btn-primary btn-lg" %>
+      <div>
+        <%= f.button :submit, class: "form-btn btn btn-primary btn-lg" %>
+      </div>
+
     <% end %>
 
     <div id="suggestions"></div>
