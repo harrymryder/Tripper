@@ -8,7 +8,7 @@ const pointsOfInterestElement = document.getElementById('points-of-interest')
 // build javascript objects out of a JSON with the points of interests
 const pointsOfInterest = JSON.parse(pointsOfInterestElement.dataset.poi)
 // select only the names of the poi
-const poiNames = pointsOfInterest.map(poi => poi.name)
+const poiNames = pointsOfInterest.map(poi => poi.country)
 
 const suggestion = (term, suggest) => {
   // only keep the names that start like the input value
