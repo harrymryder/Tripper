@@ -15,7 +15,7 @@
 }
 
 .trand-cities {
-  color: black;
+  color: $gray;
   background-color: white;
   text-align: center;
   padding: 50px 0;
@@ -42,7 +42,7 @@
   color: rgb(127, 127, 127);
 }
 .cities-cards-heading {
-  color: black;
+  color: $gray;
   text-align: center;
   padding: 50px 0;
 }
@@ -51,5 +51,10 @@
   padding: 50px 0;
 }
 .t-plans-sub-heading {
-  text-transform: uppercase;
+  h3 {
+    text-transform: uppercase;
+  }
+}
+.trand-cities {
+  color: $gray;
 }
