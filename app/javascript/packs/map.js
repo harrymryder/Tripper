@@ -35,9 +35,6 @@ fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/100.493889,13.75
     })
   });
 
-console.log(legDistances)
-console.log(legDurations)
-
 /////////////////////////////////
 
 
@@ -194,6 +191,24 @@ map.on('load', function() {
       });
     });
   });
+
+  // Pop up when hovering over card
+
+  cards.forEach((card) => {
+    card.addEventListener('mouseover', (e) => {
+      // var coordinates = .features[0].geometry.coordinates.slice();
+      // var description = e.features[0].properties.description;
+      console.log(card)
+      console.log("mouseover")
+      console.log(markers)
+      // var coordinates = markers.
+      new mapboxgl.Popup()
+              // .setLngLat(markers.find{name:card}.coordinates)
+              // .setHTML(markers.find{name:card}.description)
+              // .addTo(map);
+          // console.log(description)
+    })
+  })
 
   // Listen for a click on Optimize Button
   optimizeButton.addEventListener('click', (e) => {
