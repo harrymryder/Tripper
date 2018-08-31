@@ -167,7 +167,7 @@ map.on('load', function() {
     // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with description HTML from its properties.
       markers.forEach((marker) => {
-        map.on('mouseover', `${marker[2]}`, (ev) => {
+        map.on('click', `${marker[2]}`, (ev) => {
           // console.log(`${marker[2]}`)
           cards.forEach((card) => {
             card.style.borderStyle = "none";
