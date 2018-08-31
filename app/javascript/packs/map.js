@@ -18,13 +18,24 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dyd
 
 // fetch data from optimization API
 
+const legDistances = []
+const legDurations = []
+
 fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/100.493889,13.752222;100.565,14.355;98.998611,18.795278?access_token=${mapboxgl.accessToken}`)
   .then(response => response.json())
   .then((data) => {
-    const tripLegs = data["trips"]["legs"]
-    console.log(tripLegs)
+    console.log(data)
+    const tripLegs = data.trips[0].legs
+    tripLegs.forEach((leg) => {
+      const legDurationsInMinutes = leg.duration / 60
+      const legDistancesInKm = leg.distance / 1000
+      legDurations.push(legDurationsInMinutes)
+      legDistances.push(legDistancesInKm)
+    })
   });
 
+console.log(legDistances)
+console.log(legDurations)
 
 /////////////////////////////////
 
