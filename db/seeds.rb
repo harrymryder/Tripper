@@ -29,10 +29,12 @@ Dir.foreach("#{Rails.root}/app/assets/json/country_poi_data/") do |file|
       description: poi["Description"],
       url: poi["Url"],
       country: poi["Country"],
+      photo: poi['Photo']
       })
     end
   end
 
+puts 'Complete!'
 
 #   html_doc.css('.card').each do |card|
 #     array = []
