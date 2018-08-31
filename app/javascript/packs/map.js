@@ -163,6 +163,7 @@ map.on('load', function() {
           let cardToLightUp = document.getElementById(`${marker[2]}`)
           cardToLightUp.style.borderStyle = "solid";
           cardToLightUp.style.borderColor = "red";
+          cardToLightUp.scrollIntoView({ block: 'end',  behavior: 'smooth' })
         });
 
         map.on('click', `${marker[2]}`, function (e) {
@@ -207,21 +208,6 @@ map.on('load', function() {
       count = count + 1
       }
     });
-
-  // Listen for a click on the map
-  // map.on('click', function(e) {
-  //   // When the map is clicked, add a new drop-off point
-  //   // and update the `dropoffs-symbol` layer
-  //   for (i = 0; i < legs.length; i++) {
-  //     var coords = {
-  //     lat: legs[i][1],
-  //     lng: legs[i][0]
-  //     }
-  //     newDropoff(coords);
-  //     updateDropoffs(dropoffs);
-  //     count = count + 1
-  //     }
-  //   });
 
   map.addSource('route', {
     type: 'geojson',
