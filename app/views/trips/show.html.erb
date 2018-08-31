@@ -16,15 +16,31 @@
         <% @pois = PointOfInterest.where(country: @trip.start_location) %>
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
-            <div class="card-box card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
-                <h5><%= poi.name %></h5>
-                <i class="fas fa-plus plus"></i>
-                <div class="card-description">
-                  <p><%= poi.description %></p>
-                </div>
-                <%#= image_tag poi.photo, class: 'card-img'%>
-
+            <% if Leg.find_by(point_of_interest_id: poi.id).nil? %>
+            <div class="card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+              <h5><%= poi.name %></h5>
+                <%= link_to trip_legs_path(@trip, poi_id: poi.id) , method: :post  do  %>
+                  <i class="fas fa-plus plus"></i>
+                <% end %>
+              <div class="card-description">
+                <% @id_poi = poi.id %>
+                <p><%= poi.description %></p>
+              </div>
             </div>
+            <% else %>
+            <div class="card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+              <h5><%= poi.name %></h5>
+              <% bla = Leg.find_by(point_of_interest_id: poi.id) %>
+
+                <%= link_to trip_leg_path(@trip, bla), method: :delete  do  %>
+                  <i class="fas fa-minus minus"></i>
+                <% end %>
+              <div class="card-description">
+                <% @id_poi = poi.id %>
+                <p><%= poi.description %></p>
+              </div>
+            </div>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -32,7 +48,7 @@
   </div>
 
   <div class="map-container">
-    <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-blue-pin = "<%= asset_path('blue-pin.png')%>" data-markers = "<%= @markers.to_json %>"></div>
+    <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-blue-pin = "<%= asset_path('blue-pin.png')%>" data-markers = "<%= @markers.to_json %>" data-legs = "<%= @leg_list.to_json %>"></div>
   </div>
 
 </div>
