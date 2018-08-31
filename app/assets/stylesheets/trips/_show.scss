@@ -90,6 +90,8 @@
   background-color: $secondary-color;
   color: $light-gray;
   padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
   p {
     margin: 0;
     font-family: $headers-font;
@@ -98,6 +100,7 @@
   }
   &:hover {
     background-color: #7ea8af;
+    cursor: pointer;
   }
 }
 

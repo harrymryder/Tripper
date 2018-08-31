@@ -12,6 +12,8 @@ const pin = document.getElementById('map').dataset['pin']
 
 const bluePin = document.getElementById('map').dataset['bluepin']
 
+const optimizeButton = document.querySelector('.optimize-button')
+
 /////////////////////////////////
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
@@ -192,11 +194,9 @@ map.on('load', function() {
     });
   });
 
-
-  // Listen for a click on the map
-  map.on('click', function(e) {
-    // When the map is clicked, add a new drop-off point
-    // and update the `dropoffs-symbol` layer
+  // Listen for a click on Optimize Button
+  optimizeButton.addEventListener('click', (e) => {
+    console.log("button pressed")
     for (i = 0; i < legs.length; i++) {
       var coords = {
       lat: legs[i][1],
@@ -207,6 +207,21 @@ map.on('load', function() {
       count = count + 1
       }
     });
+
+  // Listen for a click on the map
+  // map.on('click', function(e) {
+  //   // When the map is clicked, add a new drop-off point
+  //   // and update the `dropoffs-symbol` layer
+  //   for (i = 0; i < legs.length; i++) {
+  //     var coords = {
+  //     lat: legs[i][1],
+  //     lng: legs[i][0]
+  //     }
+  //     newDropoff(coords);
+  //     updateDropoffs(dropoffs);
+  //     count = count + 1
+  //     }
+  //   });
 
   map.addSource('route', {
     type: 'geojson',
@@ -340,20 +355,20 @@ function objectToArray(obj) {
 
 // mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
 
-// plus.forEach(function(element) {
-//   element.addEventListener("click", (event) => {
-//     console.log(event.currentTarget.parentNode)
-//     if (event.currentTarget.classList.contains("fa-plus")) {
-//       event.currentTarget.classList.add('fa-minus')
-//       event.currentTarget.classList.remove('fa-plus')
-//     } else {
-//       event.currentTarget.classList.remove('fa-minus')
-//       event.currentTarget.classList.add('fa-plus')
-//     }
+plus.forEach(function(element) {
+  element.addEventListener("click", (event) => {
+    console.log(event.currentTarget.parentNode)
+    if (event.currentTarget.classList.contains("fa-plus")) {
+      event.currentTarget.classList.add('fa-minus')
+      event.currentTarget.classList.remove('fa-plus')
+    } else {
+      event.currentTarget.classList.remove('fa-minus')
+      event.currentTarget.classList.add('fa-plus')
+    }
 
-//     event.currentTarget.parentNode.classList.toggle("card-active");
-//   });
-// });
+    event.currentTarget.parentNode.classList.toggle("card-active");
+  });
+});
 
 // var keepTrack = [];
 // var currentSchedule = [];
