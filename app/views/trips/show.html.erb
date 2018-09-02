@@ -17,17 +17,17 @@
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
             <% if Leg.find_by(point_of_interest_id: poi.id).nil? %>
-            <div class="card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+            <div class="card-box-plus card-live card--big" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
               <h5><%= poi.name %></h5>
                 <%= link_to trip_legs_path(@trip, poi_id: poi.id) , method: :post  do  %>
                   <i class="fas fa-plus plus"></i>
                 <% end %>
-              <div class="card-description">
                 <% @id_poi = poi.id %>
-                <p><%= poi.description %></p>
+                <p class="card-description"><%= poi.description %></p>
                 <%= image_tag poi.photo, class: "card-img" %>
-
-              </div>
+                <div class="read-more"></div>
+                <p class="card-btn read-more-btn btn btn-primary" id="toggle">Read More</p>
+                <p class="card-btn add-poi-btn btn btn-primary">Add To Trip</p>
             </div>
             <% else %>
             <div class="card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
@@ -37,12 +37,12 @@
                 <%= link_to trip_leg_path(@trip, bla), method: :delete  do  %>
                   <i class="fas fa-minus minus"></i>
                 <% end %>
-              <div class="card-description">
                 <% @id_poi = poi.id %>
-                <p><%= poi.description %></p>
+                <p class="card-description"><%= poi.description %></p>
                 <%= image_tag poi.photo, class: "card-img" %>
+                <p class="card-btn read-more-btn btn btn-primary" id="toggle">Read More</p>
+                <p class="card-btn added-poi-btn btn">Added To Trip</p>
               </div>
-            </div>
             <% end %>
           </div>
         <% end %>

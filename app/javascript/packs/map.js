@@ -170,11 +170,11 @@ map.on('load', function() {
         map.on('click', `${marker[2]}`, (ev) => {
           // console.log(`${marker[2]}`)
           cards.forEach((card) => {
-            card.style.borderStyle = "none";
+            // card.style.borderStyle = "none";
           })
           let cardToLightUp = document.getElementById(`${marker[2]}`)
-          cardToLightUp.style.borderStyle = "solid";
-          cardToLightUp.style.borderColor = "red";
+          // cardToLightUp.style.borderStyle = "solid";
+          // cardToLightUp.style.borderColor = "red";
           cardToLightUp.scrollIntoView({ block: 'end',  behavior: 'smooth' })
         });
 
