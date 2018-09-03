@@ -104,3 +104,32 @@
   }
 }
 
+// .itinerary-container {
+//   width: 400px;
+//   padding-top: 100px;
+//   padding-bottom: 100px;
+//   margin: 0 auto;
+// }
+.itinerary-card {
+  h5 {
+    font-family: $headers-font;
+    font-weight: lighter;
+    text-transform: uppercaser;
+    color: $red;
+  } .itinerary-desc {
+    font-size: 16px;
+    font-family: $body-font;
+  }
+}
+// .leg-durations {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-around;
+//   padding: 0px 20px;
+//   width: 220px;
+//   margin-left: 147px;
+//   .fa-long-arrow-alt-down {
+//     font-size: 50px;
+//     color: $primary-color;
+//   }
+// }
