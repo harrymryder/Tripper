@@ -32,7 +32,7 @@
             <% else %>
             <div class="card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
               <h5><%= poi.name %></h5>
-              <% bla = Leg.find_by(point_of_interest_id: poi.id) %>
+              <% bla = @trip.legs.find_by(point_of_interest_id: poi.id) %>
 
                 <%= link_to trip_leg_path(@trip, bla), method: :delete  do  %>
                   <i class="fas fa-minus minus"></i>
