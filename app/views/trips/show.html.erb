@@ -63,35 +63,37 @@
 
 <% first_poi = @pois[0] %>
 
-<div class="timeline-container">
-  <h4>Your Trip</h4>
+<%= @time_left %>
 
-  <section class="timeline">
+<div class="timeline-container">
+  <div class="timeline">
     <ul>
       <% @pois.each do |poi| %>
-        <% if Leg.find_by(point_of_interest_id: poi.id).present? %>
-          <li class="itinerary-card">
-            <div>
+        <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
+        <% if leg.present? %>
+          <li>
+            <div class="timeline-content">
               <h5><%= poi.name %></h5>
               <p><%= poi.description %></p>
-            </div>
-          </li>
-          <li class="itinerary-duration">
-            <div>
-              <p>Travel time to next destination:<p>
               <p class="duration"></p>
+              <div class="los_form">
+                <%= simple_form_for leg, remote: true do |f| %>
+                  <%= f.input :length_of_stay, class: 'length_of_stay' %>
+                  <%= f.submit 'Confirm', class: 'submit' %>
+                <% end %>
+              </div>
             </div>
           </li>
-        <% end %>
+         <% end %>
       <% end %>
-      <li class="itinerary-card">
-        <div>
+      <li>
+        <div class="timeline-content">
           <h5><%= first_poi.name %></h5>
           <p><%= first_poi.description %></p>
         </div>
       </li>
     </ul>
-  </section>
+  </div>
 </div>
 
 

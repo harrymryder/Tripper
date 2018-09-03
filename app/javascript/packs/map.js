@@ -53,8 +53,7 @@ fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?acc
     // console.log(legDurations[0]);
     var num = 0;
     document.querySelectorAll(".duration").forEach(function(ptag){
-      ptag.innerHTML = legDurations[num];
-      console.log(ptag);
+      ptag.innerHTML = `Travel time to next destination: <strong>${legDurations[num]}</strong>`;
       num++;
     });
   });
