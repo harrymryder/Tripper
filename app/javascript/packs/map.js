@@ -16,8 +16,6 @@ const optimizeButton = document.querySelector('.optimize-button')
 
 var legs = JSON.parse(mapElement.dataset.legs);
 
-console.log(legs)
-
 /////////////////////////////////
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
@@ -29,20 +27,38 @@ const legDurations = []
 
 var api_input = "";
 legs.forEach ((leg) => {
-  api_input += `${leg[0]},${leg[1]};`
+  api_input += `${leg[1]},${leg[0]};`
 });
-api_input.substring(0, api_input.length - 1);
+api_input = api_input.slice(0, -1);
 fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?access_token=${mapboxgl.accessToken}`)
   .then(response => response.json())
   .then((data) => {
     const tripLegs = data.trips[0].legs
     tripLegs.forEach((leg) => {
+      // console.log(leg)
       const legDurationsInMinutes = leg.duration / 60
       const legDistancesInKm = leg.distance / 1000
       legDurations.push(legDurationsInMinutes)
       legDistances.push(legDistancesInKm)
     })
+    // console.log(tripLegs)
   });
+
+// fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?access_token=${mapboxgl.accessToken}`)
+//   .then(response => response.json())
+//   .then((data) => {
+//     const tripLegs = data.trips[0].legs
+//     tripLegs.forEach((leg) => {
+//       // console.log(leg)
+//       const legDurationsInMinutes = leg.duration / 60
+//       const legDistancesInKm = leg.distance / 1000
+//       legDurations.push(legDurationsInMinutes)
+//       legDistances.push(legDistancesInKm)
+//     })
+//     console.log(tripLegs)
+//   });
+
+// document.querySelector('.duration').
 
 /////////////////////////////////
 
@@ -60,14 +76,12 @@ var speedFactor = 50;
 // var legs = [[100.565,14.355],[98.998611, 18.795278]]
 var count = 0
 
-const card = document.querySelector('.card-box')
-if (card) {
-  const cardID = card.dataset['name']
-  console.log(cardID)
-}
+// const card = document.querySelector('.card-box')
+// if (card) {
+//   const cardID = card.dataset['name']
+//   console.log(cardID)
+// }
 
-// Add your access token
-console.log(markers)
 // Initialize a map
 var map = new mapboxgl.Map({
   container: 'map', // container id
@@ -168,7 +182,6 @@ map.on('load', function() {
     // location of the feature, with description HTML from its properties.
       markers.forEach((marker) => {
         map.on('click', `${marker[2]}`, (ev) => {
-          // console.log(`${marker[2]}`)
           cards.forEach((card) => {
             card.style.borderStyle = "none";
           })
@@ -191,7 +204,6 @@ map.on('load', function() {
               .setLngLat(coordinates)
               .setHTML(description)
               .addTo(map);
-          console.log(description)
         })
       });
 
