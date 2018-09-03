@@ -17,7 +17,7 @@
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
             <% if Leg.find_by(point_of_interest_id: poi.id).nil? %>
-            <div class="card-box-plus card-live card--big" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+            <div class="card-box card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
               <h5><%= poi.name %></h5>
                 <%= link_to trip_legs_path(@trip, poi_id: poi.id) , method: :post  do  %>
                   <i class="fas fa-plus plus"></i>
@@ -30,7 +30,7 @@
                 <p class="card-btn add-poi-btn btn btn-primary">Add To Trip</p>
             </div>
             <% else %>
-            <div class="card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+            <div class="card-box card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
               <h5><%= poi.name %></h5>
               <% bla = Leg.find_by(point_of_interest_id: poi.id) %>
 

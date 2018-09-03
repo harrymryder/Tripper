@@ -25,8 +25,10 @@
     font-family: $headers-font;
     color: white;
     text-transform: uppercase;
-    text-overflow: ellipsis;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
     bottom: 70px;
     left: 10px;
     z-index: 1;
