@@ -2,6 +2,8 @@ const cards = document.querySelectorAll(".card-box");
 
 const plus = document.querySelectorAll(".plus");
 
+const addPOI = document.querySelectorAll(".add-poi-btn")
+
 const mapElement = document.getElementById("map");
 
 const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
@@ -95,6 +97,7 @@ var count = 0
 //   const cardID = card.dataset['name']
 //   console.log(cardID)
 // }
+
 
 // Initialize a map
 var map = new mapboxgl.Map({
@@ -204,11 +207,11 @@ map.on('load', function() {
       markers.forEach((marker) => {
         map.on('click', `${marker[2]}`, (ev) => {
           cards.forEach((card) => {
-            card.style.borderStyle = "none";
+            // card.style.borderStyle = "none";
           })
           let cardToLightUp = document.getElementById(`${marker[2]}`)
-          cardToLightUp.style.borderStyle = "solid";
-          cardToLightUp.style.borderColor = "red";
+          // cardToLightUp.style.borderStyle = "solid";
+          // cardToLightUp.style.borderColor = "red";
           cardToLightUp.scrollIntoView({ block: 'end',  behavior: 'smooth' })
         });
 
@@ -246,21 +249,23 @@ map.on('load', function() {
     card.addEventListener('mouseover', (e) => {
       // var coordinates = .features[0].geometry.coordinates.slice();
       // var description = e.features[0].properties.description;
-      console.log(card)
-      console.log("mouseover")
-      console.log(markers)
-      // var coordinates = markers.
-      new mapboxgl.Popup()
-              // .setLngLat(markers.find{name:card}.coordinates)
-              // .setHTML(markers.find{name:card}.description)
-              // .addTo(map);
-          // console.log(description)
+      // console.log(card.id)
+      // console.log(markers)
+      markers.forEach((marker) => {
+        if(marker[2] === card.id) {
+          var coordinates = [marker[1], marker[0]]
+          var description = marker[2]
+        new mapboxgl.Popup()
+              .setLngLat(coordinates)
+              .setHTML(description)
+              .addTo(map);
+        }
+      })
     })
   })
 
   // Listen for a click on Optimize Button
   optimizeButton.addEventListener('click', (e) => {
-    console.log("button pressed")
     for (i = 1; i < legs.length; i++) {
       var coords = {
       lat: legs[i][0],
@@ -429,7 +434,7 @@ function objectToArray(obj) {
 
 plus.forEach(function(element) {
   element.addEventListener("click", (event) => {
-    console.log(event.currentTarget.parentNode)
+    // console.log(event.currentTarget.parentNode)
     if (event.currentTarget.classList.contains("fa-plus")) {
       event.currentTarget.classList.add('fa-minus')
       event.currentTarget.classList.remove('fa-plus')
@@ -441,3 +446,18 @@ plus.forEach(function(element) {
     event.currentTarget.parentNode.classList.toggle("card-active");
   });
 });
+
+// addPOI.forEach(function(element) {
+//   element.addEventListener("click", (event) => {
+//     console.log(event.currentTarget.parentNode)
+//     if (event.currentTarget.classList.contains("add-poi-btn")) {
+//       event.currentTarget.classList.add('added-poi-btn')
+//       event.currentTarget.classList.remove('add-poi-btn')
+//     } else {
+//       event.currentTarget.classList.remove('added-poi-btn')
+//       event.currentTarget.classList.add('add-poi-btn')
+//     }
+
+//     event.currentTarget.parentNode.classList.toggle("card-active");
+//   });
+// });
