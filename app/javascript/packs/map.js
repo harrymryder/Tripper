@@ -72,9 +72,12 @@ fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?acc
 // document.querySelector('.duration').
 
 /////////////////////////////////
+if ( legs.length == 0 ) {
+  var startPoint = [markers[0][1],markers[0][0]];
+  } else {
+    var startPoint = [legs[0][1],legs[0][0]];
+  }
 
-
-var startPoint = [markers[0][1],markers[0][0]];
 var alsoStartPoint = startPoint;
 var lastQueryTime = 0;
 var lastAtRestaurant = 0;
@@ -118,9 +121,9 @@ map.on('load', function() {
       type: 'geojson'
     },
     paint: {
-      'circle-radius': 0,
+      'circle-radius': 15,
       'circle-color': 'white',
-      'circle-stroke-color': '#3887be',
+      'circle-stroke-color': '#93B7BE',
       'circle-stroke-width': 3
     }
   });
@@ -134,8 +137,8 @@ map.on('load', function() {
       type: 'geojson'
     },
     layout: {
-      'icon-image': 'grocery-15',
-      'icon-size': 1
+      'icon-image': 'marker-15',
+      'icon-size': 0
     },
     paint: {
       'text-color': '#3887be'
@@ -144,16 +147,23 @@ map.on('load', function() {
 
   map.addLayer({
     id: 'dropoffs-symbol',
-    type: 'symbol',
+    type: 'circle',
     source: {
       data: dropoffs,
       type: 'geojson'
     },
-    layout: {
-      'icon-allow-overlap': true,
-      'icon-ignore-placement': true,
-      'icon-image': 'marker-15',
+    paint: {
+      'circle-radius': 15,
+      'circle-color': 'white',
+      'circle-stroke-color': '#93B7BE',
+      'circle-stroke-width': 3
     }
+    // layout: {
+    //   'icon-allow-overlap': true,
+    //   'icon-ignore-placement': true,
+    //   'icon-image': 'marker-15',
+    //   'icon-size': 1
+    // }
   });
 
   // Add POI markers
@@ -184,7 +194,7 @@ map.on('load', function() {
             },
             "layout": {
                 "icon-image": "pin",
-                "icon-size": 0.5,
+                "icon-size": 0.4,
                 "icon-allow-overlap": true
             }
       });
@@ -284,6 +294,29 @@ map.on('load', function() {
     }
   }, 'waterway-label');
 
+  map.addLayer({
+    id: 'routearrows',
+    type: 'symbol',
+    source: 'route',
+    layout: {
+      'symbol-placement': 'line',
+      'text-field': '▶',
+      'text-size': {
+        base: 1,
+        stops: [[1, 60], [22, 70]]
+      },
+      'symbol-spacing': {
+        base: 0.5,
+        stops: [[1, 30], [22, 70]]
+      },
+      'text-keep-upright': false
+    },
+    paint: {
+      'text-color': '#93B7BE',
+      'text-halo-color': 'hsl(55, 11%, 96%)',
+      'text-halo-width': 3
+    }
+  }, 'waterway-label');
 
 //end of map load
 });
