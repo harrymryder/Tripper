@@ -16,6 +16,7 @@
         <% @pois = PointOfInterest.where(country: @trip.start_location) %>
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
+
             <% if Leg.find_by(point_of_interest_id: poi.id).nil? %>
             <div class="card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
               <h5><%= poi.name %></h5>
@@ -32,7 +33,7 @@
             <% else %>
             <div class="card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
               <h5><%= poi.name %></h5>
-              <% bla = @trip.legs.find_by(point_of_interest_id: poi.id) %>
+              <% bla = Leg.find_by(point_of_interest_id: poi.id) %>
 
                 <%= link_to trip_leg_path(@trip, bla), method: :delete  do  %>
                   <i class="fas fa-minus minus"></i>
@@ -45,6 +46,7 @@
             </div>
             <% end %>
           </div>
+
         <% end %>
       </div>
     </div>
