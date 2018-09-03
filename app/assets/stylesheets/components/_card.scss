@@ -64,6 +64,33 @@
     top: 135px;
     border-bottom: 1px solid $light-gray;
 }
+.card-description:hover {
+    // margin: 0px;
+    // padding: 0px 10px;
+    // bottom: 35px;
+    // height: 50px;
+    // position: absolute;
+    // overflow: hidden;
+    // font-size: 12px;
+    // text-align: left !important;
+    // text-overflow: ellipsis;
+    // font-weight: lighter;
+    // display: inline-block;
+    // float:left;
+    // white-space: nowrap;
+    position: absolute;
+    font-family: $body-font;
+    height:35px;
+    left: 1px;
+    width: 270px;
+    margin: 0 10px 0 10px;
+    font-size: 12px;
+    text-align: left;
+    text-decoration: none;
+
+    top: 135px;
+    border-bottom: 1px solid $light-gray;
+}
 .card-img {
   position: absolute;
   top: 0px;
