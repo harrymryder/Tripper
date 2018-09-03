@@ -9,7 +9,7 @@
 
   <div class="cards-wrap">
     <h4>CUSTOMISE YOUR TRIP</h4>
-    <p>Drag and drop activites to personally tailor your trip</p>
+    <p>Add and remove activities to your trip and click 'optimize your route' when you think you're finished</p>
     <div class="cards-container">
       <div class="row">
 
@@ -51,10 +51,10 @@
   </div>
 
   <div class="map-container">
-    <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-blue-pin = "<%= asset_path('blue-pin.png')%>" data-markers = "<%= @markers.to_json %>" data-legs = "<%= @leg_list.to_json %>"></div>
-     <div class="optimize-button">
-        <p>Calculate Optimized Route</p>
-      </div>
+    <div id='map' data-pin = "<%= asset_path('pin.png')%>" data-bluepin = "<%= asset_path('blue-pin.png')%>" data-markers = "<%= @markers.to_json %>" data-legs = "<%= @leg_list.to_json %>"></div>
+    <div class="optimize-button">
+      <p>Calculate Optimized Route</p>
+    </div>
   </div>
 
 </div>

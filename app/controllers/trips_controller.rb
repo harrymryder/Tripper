@@ -9,13 +9,17 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
 
-
-    @markers = PointOfInterest.where(country: @trip.start_location).map do |poi|
-      [poi.lat, poi.long, poi.name, poi.description, poi.url]
+    @markers = []
+    PointOfInterest.where(country: @trip.start_location).each do |poi|
+      @markers << [poi.lat,poi.long,poi.name, poi.description, poi.url, poi.photo]
     end
-    # @markers = PointOfInterest.where(country: params[:country]).where.not(lat: nil, lng: nil).map do |poi|
-    #   [poi.lat, poi.long]
-    # end
+    @legs = Leg.all
+    @leg_list = []
+    @legs.each do |leg|
+      geocode = [ leg.point_of_interest.lat, leg.point_of_interest.long ]
+      @leg_list << geocode
+    end
+    @leg_list
   end
 
   def new
