@@ -61,25 +61,41 @@
 
 </div>
 
-<div class="itinerary-container">
-  <div class="row">
-    <% @pois.each do |poi| %>
-    <div class="col-xs-12 ">
-      <% if Leg.find_by(point_of_interest_id: poi.id).present? %>
-        <div class="itinerary-card" data-duration="">
-          <h5><%= poi.name %></h5>
-          <p><%= poi.description %></p>
-          <p class="duration"></p>
-          <div class="leg-duration"></div>
-        </div>
+<% first_poi = @pois[0] %>
+
+<div class="timeline-container">
+  <h4>Your Trip</h4>
+
+  <section class="timeline">
+    <ul>
+      <% @pois.each do |poi| %>
+        <% if Leg.find_by(point_of_interest_id: poi.id).present? %>
+          <li class="itinerary-card">
+            <div>
+              <h5><%= poi.name %></h5>
+              <p><%= poi.description %></p>
+            </div>
+          </li>
+          <li class="itinerary-duration">
+            <div>
+              <p>Travel time to next destination:<p>
+              <p class="duration"></p>
+            </div>
+          </li>
+        <% end %>
       <% end %>
-    </div>
-  <% end %>
-  </div>
+      <li class="itinerary-card">
+        <div>
+          <h5><%= first_poi.name %></h5>
+          <p><%= first_poi.description %></p>
+        </div>
+      </li>
+    </ul>
+  </section>
 </div>
 
 
-
 <%= javascript_pack_tag "map" %>
+<%= javascript_pack_tag "timeline" %>
 
 

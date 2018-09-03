@@ -43,7 +43,10 @@ fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?acc
     tripLegs.forEach((leg) => {
       const legDurationsInMinutes = leg.duration / 60
       const legDistancesInKm = leg.distance / 1000
-      legDurations.push(legDurationsInMinutes)
+      const minutes = legDurationsInMinutes % 60;
+      const hours = (legDurationsInMinutes - minutes) / 60;
+      const finalTime = hours + "hr " + Math.round(minutes) + "mins";
+      legDurations.push(finalTime)
       legDistances.push(legDistancesInKm)
     })
     // console.log(tripLegs)
