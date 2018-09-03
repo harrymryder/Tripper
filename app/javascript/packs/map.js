@@ -24,17 +24,21 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dyd
 
 // fetch data from optimization API
 
-const legDistances = []
-const legDurations = []
+let legDistances = [];
+let legDurations = [];
+// console.log(legDurations)
 
 var api_input = "";
 legs.forEach ((leg) => {
-  api_input += `${leg[0]},${leg[1]};`
+  api_input += `${leg[1]},${leg[0]};`
 });
-api_input.substring(0, api_input.length - 1);
+
+api_input = api_input.slice(0, -1);
+
 fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?access_token=${mapboxgl.accessToken}`)
   .then(response => response.json())
   .then((data) => {
+    // console.log(data)
     const tripLegs = data.trips[0].legs
     tripLegs.forEach((leg) => {
       const legDurationsInMinutes = leg.duration / 60
@@ -42,12 +46,40 @@ fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?acc
       legDurations.push(legDurationsInMinutes)
       legDistances.push(legDistancesInKm)
     })
+    // console.log(tripLegs)
+    // console.log(legDurations[0]);
+    var num = 0;
+    document.querySelectorAll(".duration").forEach(function(ptag){
+      ptag.innerHTML = legDurations[num];
+      console.log(ptag);
+      num++;
+    });
   });
 
+
+// fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?access_token=${mapboxgl.accessToken}`)
+//   .then(response => response.json())
+//   .then((data) => {
+//     const tripLegs = data.trips[0].legs
+//     tripLegs.forEach((leg) => {
+//       // console.log(leg)
+//       const legDurationsInMinutes = leg.duration / 60
+//       const legDistancesInKm = leg.distance / 1000
+//       legDurations.push(legDurationsInMinutes)
+//       legDistances.push(legDistancesInKm)
+//     })
+//     console.log(tripLegs)
+//   });
+
+// document.querySelector('.duration').
+
 /////////////////////////////////
+if ( legs.length == 0 ) {
+  var startPoint = [markers[0][1],markers[0][0]];
+  } else {
+    var startPoint = [legs[0][1],legs[0][0]];
+  }
 
-
-var startPoint = [markers[0][1],markers[0][0]];
 var alsoStartPoint = startPoint;
 var lastQueryTime = 0;
 var lastAtRestaurant = 0;
@@ -66,7 +98,7 @@ var count = 0
 //   console.log(cardID)
 // }
 
-// Add your access token
+
 // Initialize a map
 var map = new mapboxgl.Map({
   container: 'map', // container id
@@ -92,9 +124,9 @@ map.on('load', function() {
       type: 'geojson'
     },
     paint: {
-      'circle-radius': 0,
+      'circle-radius': 15,
       'circle-color': 'white',
-      'circle-stroke-color': '#3887be',
+      'circle-stroke-color': '#93B7BE',
       'circle-stroke-width': 3
     }
   });
@@ -108,8 +140,8 @@ map.on('load', function() {
       type: 'geojson'
     },
     layout: {
-      'icon-image': 'grocery-15',
-      'icon-size': 1
+      'icon-image': 'marker-15',
+      'icon-size': 0
     },
     paint: {
       'text-color': '#3887be'
@@ -118,16 +150,23 @@ map.on('load', function() {
 
   map.addLayer({
     id: 'dropoffs-symbol',
-    type: 'symbol',
+    type: 'circle',
     source: {
       data: dropoffs,
       type: 'geojson'
     },
-    layout: {
-      'icon-allow-overlap': true,
-      'icon-ignore-placement': true,
-      'icon-image': 'marker-15',
+    paint: {
+      'circle-radius': 15,
+      'circle-color': 'white',
+      'circle-stroke-color': '#93B7BE',
+      'circle-stroke-width': 3
     }
+    // layout: {
+    //   'icon-allow-overlap': true,
+    //   'icon-ignore-placement': true,
+    //   'icon-image': 'marker-15',
+    //   'icon-size': 1
+    // }
   });
 
   // Add POI markers
@@ -158,7 +197,7 @@ map.on('load', function() {
             },
             "layout": {
                 "icon-image": "pin",
-                "icon-size": 0.5,
+                "icon-size": 0.4,
                 "icon-allow-overlap": true
             }
       });
@@ -167,7 +206,6 @@ map.on('load', function() {
     // location of the feature, with description HTML from its properties.
       markers.forEach((marker) => {
         map.on('click', `${marker[2]}`, (ev) => {
-          // console.log(`${marker[2]}`)
           cards.forEach((card) => {
             // card.style.borderStyle = "none";
           })
@@ -261,6 +299,29 @@ map.on('load', function() {
     }
   }, 'waterway-label');
 
+  map.addLayer({
+    id: 'routearrows',
+    type: 'symbol',
+    source: 'route',
+    layout: {
+      'symbol-placement': 'line',
+      'text-field': '▶',
+      'text-size': {
+        base: 1,
+        stops: [[1, 60], [22, 70]]
+      },
+      'symbol-spacing': {
+        base: 0.5,
+        stops: [[1, 30], [22, 70]]
+      },
+      'text-keep-upright': false
+    },
+    paint: {
+      'text-color': '#93B7BE',
+      'text-halo-color': 'hsl(55, 11%, 96%)',
+      'text-halo-width': 3
+    }
+  }, 'waterway-label');
 
 //end of map load
 });

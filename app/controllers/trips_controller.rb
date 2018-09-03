@@ -8,12 +8,11 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-
     @markers = []
     PointOfInterest.where(country: @trip.start_location).each do |poi|
-      @markers << [poi.lat,poi.long,poi.name, poi.description, poi.url, poi.photo]
+      @markers << [poi.lat, poi.long, poi.name, poi.description, poi.url, poi.photo]
     end
-    @legs = Leg.all
+    @legs = Leg.where(trip_id: params[:id])
     @leg_list = []
     @legs.each do |leg|
       geocode = [ leg.point_of_interest.lat, leg.point_of_interest.long ]
@@ -22,9 +21,9 @@ class TripsController < ApplicationController
     @leg_list
   end
 
-  def new
-    @trip = Trip.new
-  end
+  # def new
+  #   @trip = Trip.new
+  # end
 
   def create
     @trip = Trip.new(trip_params)
@@ -36,18 +35,10 @@ class TripsController < ApplicationController
     end
   end
 
-  # def edit
-  # end
-
-  # def update
-  # end
-
-  # def destroy
-  # end
-
   private
 
   def trip_params
     params.require(:trip).permit(:name, :description, :user_id, :start_location, :end_location, :start_lat, :start_long, :start_date, :end_date, :travel_type, :photo, :preferred_travel_time)
   end
+
 end

@@ -6,6 +6,7 @@ puts 'Cleaning database...'
 
 # def scrape(location)
 
+Leg.destroy_all
 
 PointOfInterest.destroy_all
 
