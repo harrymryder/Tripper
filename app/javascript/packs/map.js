@@ -22,27 +22,38 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dyd
 
 // fetch data from optimization API
 
-const legDistances = []
-const legDurations = []
+let legDistances = [];
+let legDurations = [];
+// console.log(legDurations)
 
 var api_input = "";
 legs.forEach ((leg) => {
   api_input += `${leg[1]},${leg[0]};`
 });
+
 api_input = api_input.slice(0, -1);
+
 fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?access_token=${mapboxgl.accessToken}`)
   .then(response => response.json())
   .then((data) => {
+    // console.log(data)
     const tripLegs = data.trips[0].legs
     tripLegs.forEach((leg) => {
-      // console.log(leg)
       const legDurationsInMinutes = leg.duration / 60
       const legDistancesInKm = leg.distance / 1000
       legDurations.push(legDurationsInMinutes)
       legDistances.push(legDistancesInKm)
     })
     // console.log(tripLegs)
+    // console.log(legDurations[0]);
+    var num = 0;
+    document.querySelectorAll(".duration").forEach(function(ptag){
+      ptag.innerHTML = legDurations[num];
+      console.log(ptag);
+      num++;
+    });
   });
+
 
 // fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?access_token=${mapboxgl.accessToken}`)
 //   .then(response => response.json())
@@ -245,7 +256,6 @@ map.on('load', function() {
       lat: legs[i][0],
       lng: legs[i][1]
       }
-      console.log(coords)
       newDropoff(coords);
       updateDropoffs(dropoffs);
       count = count + 1
