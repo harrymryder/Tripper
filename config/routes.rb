@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :trips do
-    resources :legs
+    resources :legs, except: [ :edit, :update ]
   end
+
+  resources :legs, only: [ :update ]
 
 
   resources :users, only: [:show, :edit, :update]
