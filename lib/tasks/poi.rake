@@ -242,3 +242,4 @@ namespace :poi do
       results = []
   end
 end
+end

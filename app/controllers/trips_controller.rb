@@ -34,7 +34,6 @@ class TripsController < ApplicationController
       redirect_to root_path
     end
   end
-
   private
 
   def trip_params

@@ -8,8 +8,7 @@
 <div class="trip-container">
 
   <div class="cards-wrap">
-    <h4>CUSTOMISE YOUR TRIP</h4>
-    <p>Add and remove activities to your trip and click 'optimize your route' when you think you're finished</p>
+    <h4>To Do in <%= @trip.start_location %>...</h4>
     <div class="cards-container">
       <div class="row">
 
@@ -17,32 +16,33 @@
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
 
-            <% if Leg.find_by(point_of_interest_id: poi.id).nil? %>
-            <div class="card-box card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
-              <h5><%= poi.name %></h5>
+            <% if @trip.legs.find_by(point_of_interest_id: poi.id).nil? %>
+              <div class="card-box card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+                <h5><%= poi.name %></h5>
                 <%= link_to trip_legs_path(@trip, poi_id: poi.id) , method: :post  do  %>
-                  <i class="fas fa-plus plus"></i>
+                  <p class="card-btn add-poi-btn btn btn-primary">Add To Trip</p>
+                  <!-- <i class="fas fa-plus plus"></i> -->
                 <% end %>
                 <% @id_poi = poi.id %>
-                <p class="card-description"><%= poi.description %></p>
-                <%= image_tag poi.photo, class: "card-img" %>
+                <div class="card-description"><p><%= poi.description %></p></div>
+                  <%= image_tag poi.photo, class: "card-img" %>
                 <div class="read-more"></div>
-                <p class="card-btn read-more-btn btn btn-primary" id="toggle">Read More</p>
-                <p class="card-btn add-poi-btn btn btn-primary">Add To Trip</p>
-            </div>
+                <p class="card-btn read-more-btn btn btn-primary" id="toggle">Read more</p>
+
+              </div>
             <% else %>
             <div class="card-box card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
               <h5><%= poi.name %></h5>
               <% bla = Leg.find_by(point_of_interest_id: poi.id) %>
 
                 <%= link_to trip_leg_path(@trip, bla), method: :delete  do  %>
-                  <i class="fas fa-minus minus"></i>
+                  <!-- <i class="fas fa-minus minus"></i> -->
+                  <p class="card-btn added-poi-btn btn">Added To Trip</p>
                 <% end %>
                 <% @id_poi = poi.id %>
-                <p class="card-description"><%= poi.description %></p>
+                <div class="card-description"><p><%= poi.description %></p></div>
                 <%= image_tag poi.photo, class: "card-img" %>
                 <p class="card-btn read-more-btn btn btn-primary" id="toggle">Read More</p>
-                <p class="card-btn added-poi-btn btn">Added To Trip</p>
               </div>
             <% end %>
           </div>
