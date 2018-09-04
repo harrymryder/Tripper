@@ -4,19 +4,23 @@ class LegsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @poi = PointOfInterest.find(params[:poi_id])
     @leg = Leg.new(trip_id: @trip.id, point_of_interest: @poi)
-    if @leg.save
-      redirect_to trip_path(@trip)
-    else
-      puts "didn't save"
+    @leg.save
+    respond_to do |format|
+      format.html { redirect_to trip_path(@trip) }
+      format.js
     end
   end
 
   def destroy
     @trip = Trip.find(params[:trip_id])
-    # @poi = PointOfInterest.find(params[:poi_id])
+    @poi = PointOfInterest.find(params[:point_of_interest_id])
+    @poi_id = @poi.id
     @leg = Leg.find(params[:id])
     @leg.destroy
-    redirect_to trip_path(@trip)
+    respond_to do |format|
+      format.html { redirect_to trip_path(@trip) }
+      format.js
+    end
   end
 
   def edit

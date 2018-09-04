@@ -1,0 +1,12 @@
+var addButton = document.querySelectorAll(".remove-from-trip");
+
+console.log('destroy');
+
+addButton.forEach(function(element) {
+  element.addEventListener("click", function(e) {
+    e.preventdefault
+    e.currentTarget.innerHTML = "<%= j render 'legs/create_button', trip: @trip, poi_id: @poi_id %>";
+  })
+});
+
+

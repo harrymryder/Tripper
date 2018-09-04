@@ -1,0 +1,19 @@
+// Get all the elements with the class add-to-trip
+// Iterate over each of these elements
+// // Add an event listener to each of these elements
+// // On click, grab the dataset of this element => poi.id
+// // then select the right button
+
+var addButton = document.querySelectorAll(".add-to-trip");
+
+console.log('create');
+
+addButton.forEach(function(element) {
+  element.addEventListener("click", function(e) {
+    e.preventdefault
+    e.currentTarget.innerHTML = "<%= j render 'legs/destroy_button', trip: @trip, poi: @poi, leg: @leg %>";
+  })
+});
+
+
+
