@@ -240,5 +240,6 @@ namespace :poi do
         file.write(JSON.generate(results))
       end
       results = []
+    end
   end
 end
