@@ -29,10 +29,21 @@ class LegsController < ApplicationController
     @leg = Leg.find(params[:id])
     @leg.update(leg_params)
 
+    @trip = Trip.find(params[:id])
+
+    total_stay = (@trip.end_date - @trip.start_date).to_i
+    all_los = @trip.legs.map do |leg|
+      leg.length_of_stay.nil? ? 0 : leg.length_of_stay
+    end
+
+    total_los = all_los.reduce(:+)
+    @time_left = total_stay - total_los
+    # binding.pry
     respond_to do |format|
       format.js
     end
     # redirect_to page_path(@trip)
+
   end
 
   private
