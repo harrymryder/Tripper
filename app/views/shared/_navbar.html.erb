@@ -12,7 +12,7 @@
       <!-- Links when logged in -->
       <%= link_to "About", "#{root_path}#about", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Dashboard", page_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Q&A", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%#= link_to "Q&A", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <div>
         <% if user_signed_in? %>
           <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class:"navbar-wagon-item navbar-wagon-link" %>
@@ -62,7 +62,7 @@
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li><%= link_to "About", "#{root_path}#about", class: "navbar-wagon-item navbar-wagon-link" %></li>
         <li><%#= link_to "Dashboard", page_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %></li>
-        <li><a href="#">Q&A</a></li>
+        <!-- <li><a href="#">Q&A</a></li> -->
       </ul>
     </div>
   </div>
