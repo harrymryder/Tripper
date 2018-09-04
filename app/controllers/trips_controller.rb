@@ -21,11 +21,14 @@ class TripsController < ApplicationController
     @leg_list
 
     total_stay = (@trip.end_date - @trip.start_date).to_i
-    all_los = @trip.legs.map do |leg|
-      leg.length_of_stay.nil? ? 0 : leg.length_of_stay
+
+    if @trip.legs.any?
+      all_los = @trip.legs.map do |leg|
+        leg.length_of_stay.nil? ? 0 : leg.length_of_stay
+      end
+      total_los = all_los.reduce(:+)
+      @time_left = total_stay - total_los
     end
-    total_los = all_los.reduce(:+)
-    @time_left = total_stay - total_los
   end
 
   # def new
