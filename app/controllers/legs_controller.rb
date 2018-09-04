@@ -28,8 +28,7 @@ class LegsController < ApplicationController
     # @trip = Trip.find(params[:trip_id])
     @leg = Leg.find(params[:id])
     @leg.update(leg_params)
-
-    @trip = Trip.find(params[:id])
+    @trip = Trip.find_by(id: @leg.trip_id)
 
     total_stay = (@trip.end_date - @trip.start_date).to_i
     all_los = @trip.legs.map do |leg|
