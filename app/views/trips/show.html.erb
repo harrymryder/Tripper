@@ -8,7 +8,7 @@
 <div class="trip-container">
 
   <div class="cards-wrap">
-    <h4>To Do in <%= @trip.start_location %>...</h4>
+    <h4>Things To Do in <%= @trip.start_location %>...</h4>
     <div class="cards-container">
       <div class="row">
 
@@ -20,14 +20,16 @@
               <div class="card-box card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
                 <h5><%= poi.name %></h5>
                 <%= link_to trip_legs_path(@trip, poi_id: poi.id) , method: :post  do  %>
-                  <p class="card-btn add-poi-btn btn btn-primary">Add To Trip</p>
+                  <p class="card-btn add-poi-btn btn">Add To Trip</p>
                   <!-- <i class="fas fa-plus plus"></i> -->
                 <% end %>
                 <% @id_poi = poi.id %>
                 <div class="card-description"><p><%= poi.description %></p></div>
+                <div class="card-image">
                   <%= image_tag poi.photo, class: "card-img" %>
+                </div>
                 <div class="read-more"></div>
-                <p class="card-btn read-more-btn btn btn-primary" id="toggle">Read more</p>
+                <p class="card-btn read-more-btn btn" id="toggle">Read more</p>
 
               </div>
 
@@ -42,8 +44,10 @@
                 <% end %>
                 <% @id_poi = poi.id %>
                 <div class="card-description"><p><%= poi.description %></p></div>
-                <%= image_tag poi.photo, class: "card-img" %>
-                <p class="card-btn read-more-btn btn btn-primary" id="toggle">Read More</p>
+                <div class="card-image">
+                  <%= image_tag poi.photo, class: "card-img" %>
+                </div>
+                <p class="card-btn read-more-btn btn" id="toggle">Read More</p>
               </div>
             <% end %>
           </div>

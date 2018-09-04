@@ -13,6 +13,9 @@
   h4 {
     font-family: $headers-font;
     color: $primary-color;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    line-height: 1.6;
   } p {
     color: $gray;
     font-family: $body-font;
