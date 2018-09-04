@@ -1,6 +1,6 @@
 meta_product_name: "Tripper"
 meta_title: "Tripper - Map your journey. Update your route. Share your trip."
 meta_description: "A trip optimizer where you can map, update, and share your trip. This is a final projects of 4 students from Le Wagon London."
-meta_image: "cover.jpeg"                       # should exist in `app/assets/images/`
+meta_image: "cover.jpg"                       # should exist in `app/assets/images/`
 # twitter_account: "@product_twitter_account"   # required for Twitter Cards
 
