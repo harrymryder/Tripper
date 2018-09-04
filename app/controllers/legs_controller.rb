@@ -39,10 +39,9 @@ class LegsController < ApplicationController
     @time_left = total_stay - total_los
     # binding.pry
     respond_to do |format|
+      format.html { redirect_to trip_path(@trip) }
       format.js
     end
-    # redirect_to page_path(@trip)
-
   end
 
   private

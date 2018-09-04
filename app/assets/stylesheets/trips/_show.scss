@@ -108,16 +108,24 @@
 
 // BELOW MAP //
 
+.timeline-header {
+  text-transform: uppercase;
+  text-align: center;
+  color: $red;
+  margin-top: 150px;
+}
 
 .itinerary-container {
   display: flex;
+  flex: 1 1 auto;
   width: 80vw;
   justify-content: space-around;
   margin: 0 auto;
-  padding: 100px 0px;
+  padding: 50px 0px;
 }
 
 .right-container {
+  flex: 1 1 auto;
   width: 400px;
   margin-top: 50px;
   height: 100vh;
@@ -184,21 +192,3 @@
     left: 90px;
   }
 }
-
-
-// .number-of-days-left {
-//   width: 300px;
-//   text-align: center;
-//   align-items: center;
-//   display: flex;
-//   justify-content: space-around;
-//   #days-integer {
-//     width: 50px;
-//     height: 50px;
-//     padding: 20px;
-//     border-radius: 50%;
-//     border: solid 1px white;
-//     background-color: $red;
-//     color: white;
-//   }
-// }

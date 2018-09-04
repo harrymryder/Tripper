@@ -62,6 +62,8 @@
 
 </div>
 
+<h4 class="timeline-header">Now choose how long you would like to spend in each location</h4>
+
 <div class="itinerary-container">
 
   <% first_poi = @pois[0] %>
@@ -110,6 +112,7 @@
     </div>
 
     <div class="loading-circle">
+      <p><%= @time_left %></p>
       <%#= render 'loading_circle', time_left: @time_left, total_stay: @total_stay %>
     </div>
 
