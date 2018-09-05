@@ -74,6 +74,7 @@
   align: center;
   margin-right: 5px;
   border-radius: 3px 3px 0px 0px;
+  cursor: pointer;
   &:after {
     content: "";
     display: block;
@@ -95,19 +96,37 @@
   border-radius: 5px;
 }
 .read-more-btn {
+  background-color: $red;
   position: absolute;
   bottom: 10px;
   left: 10px;
+  &:hover {
+    background: none;
+    color: $red !important;
+    border: 1px $red solid !important;
+  }
 }
 .read-less-btn {
+  background-color: $red;
   position: absolute;
   bottom: 10px;
   left: 10px;
+  &:hover {
+    background: none;
+    color: $red !important;
+    border: 1px $red solid !important;
+  }
 }
 .add-poi-btn {
+  background-color: $red;
   position: absolute;
   bottom: 10px;
   right: 10px;
+  &:hover {
+    background: none;
+    color: $red !important;
+    border: 1px $red solid !important;
+  }
 }
 .added-poi-btn {
   position: absolute;
@@ -115,7 +134,9 @@
   right: 10px;
   background-color: $secondary-color;
   &:hover {
-    background-color: #7ea8af;
+    background: none;
+    color: $secondary-color !important;
+    border: 1px $secondary-color solid !important;
   }
 }
 // .card-box-plus{

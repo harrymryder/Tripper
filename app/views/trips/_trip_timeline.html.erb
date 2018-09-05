@@ -1,0 +1,13 @@
+      <div class="timeline">
+        <ul>
+
+          <% pois.each do |poi| %>
+            <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
+            <% if leg.present? %>
+              <li>
+                <%= render 'trips/timeline_content', poi: poi, leg: leg %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>

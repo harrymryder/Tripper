@@ -1,49 +1,56 @@
-<style>
-    .mapboxgl-popup {
-        max-width: 400px;
-        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+<!-- <style>
+  .mapboxgl-popup {
+      max-width: 400px;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      font-family: $headers-font;
+      color: $gray;
+      font-size: 15px;
+      padding: 20px;
+      margin: 0 !important;
     }
-</style>
+</style> -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
 <div class="trip-container">
 
   <div class="cards-wrap">
-    <h4>To Do in <%= @trip.start_location %>...</h4>
+    <h6>Things To Do in <%= @trip.start_location %>...</h6>
     <div class="cards-container">
       <div class="row">
-
-        <% @pois = PointOfInterest.where(country: @trip.start_location) %>
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
 
             <% if @trip.legs.find_by(point_of_interest_id: poi.id).nil? %>
               <div class="card-box card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
                 <h5><%= poi.name %></h5>
-                <%= link_to trip_legs_path(@trip, poi_id: poi.id) , method: :post  do  %>
-                  <p class="card-btn add-poi-btn btn btn-primary">Add To Trip</p>
-                  <!-- <i class="fas fa-plus plus"></i> -->
-                <% end %>
+
+
+                <div id="createLeg<%= poi.id %>" class="add-to-trip">
+                  <%= render 'legs/create_button', trip: @trip, poi_id: poi.id %>
+                </div>
+
                 <% @id_poi = poi.id %>
                 <div class="card-description"><p><%= poi.description %></p></div>
+                <div class="card-image">
                   <%= image_tag poi.photo, class: "card-img" %>
+                </div>
                 <div class="read-more"></div>
-                <p class="card-btn read-more-btn btn btn-primary" id="toggle">Read more</p>
-
+                <p class="card-btn read-more-btn btn" id="toggle">Read more</p>
               </div>
-
             <% else %>
-            <div class="card-box card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
-              <h5><%= poi.name %></h5>
-              <% bla = Leg.find_by(point_of_interest_id: poi.id) %>
+              <div class="card-box card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+                <h5><%= poi.name %></h5>
+                <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
 
-                <%= link_to trip_leg_path(@trip, bla), method: :delete  do  %>
-                  <!-- <i class="fas fa-minus minus"></i> -->
-                  <p class="card-btn added-poi-btn btn">Added To Trip</p>
-                <% end %>
+                <div data-id="destroyLeg<%= poi.id %>" class="remove-from-trip">
+                  <%= render 'legs/destroy_button', trip: @trip, poi: poi, leg: leg %>
+                </div>
+
                 <% @id_poi = poi.id %>
                 <div class="card-description"><p><%= poi.description %></p></div>
-                <%= image_tag poi.photo, class: "card-img" %>
-                <p class="card-btn read-more-btn btn btn-primary" id="toggle">Read More</p>
+                <div class="card-image">
+                  <%= image_tag poi.photo, class: "card-img" %>
+                </div>
+                <p class="card-btn read-more-btn btn" id="toggle">Read More</p>
               </div>
             <% end %>
           </div>
@@ -62,13 +69,39 @@
 
 </div>
 
-<% first_poi = @pois[0] %>
 
 
-<div class="number-of-days-left">
-  <h5>Number of Days Left</h5>
-  <p id="days-integer"><%= @time_left %></p>
-</div>
+  <div class="timeline-header">
+    <i class="fas fa-chevron-circle-down"></i>
+    <h6>Now choose how long you would like to spend in each location</h6>
+    <p>P.S. Feel free to edit your trip dates if you think you need more time!</p>
+  </div>
+
+
+  <div class="itinerary-container">
+    <div class="timeline-container">
+      <%= render 'trip_timeline', pois: @pois %>
+    </div>
+
+    <div class="right-container">
+
+      <div class="edit-trip-form">
+        <h5>Edit Trip Dates</h5>
+          <div class="form-inline">
+          <%= simple_form_for @trip, remote: true do |f| %>
+            <%= f.input :start_date, placeholder: 'From', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
+            <%= f.input :end_date, placeholder: 'Until', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
+          </div>
+            <%= f.submit 'Confirm', class: 'edit-trip-submit' %>
+          <% end %>
+      </div>
+
+      <div class="progress-circle">
+        <%= render 'loading_circle', time_left: @time_left, total_stay: @total_stay %>
+      </div>
+
+    </div>
+
 
 <div class="timeline-container">
   <div class="timeline">
@@ -99,11 +132,17 @@
         </div>
       </li>
     </ul>
+
   </div>
-</div>
+
+
 
 
 <%= javascript_pack_tag "map" %>
 <%= javascript_pack_tag "timeline" %>
+<%= javascript_pack_tag "cards" %>
+
+<%= javascript_pack_tag 'datepicker' %>
+<%= javascript_pack_tag 'arrow' %>
 
 
