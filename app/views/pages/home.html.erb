@@ -72,14 +72,22 @@
   <div class="container trending">
     <div class="trending-title">
       <h3>Trending Destinations</h3>
+      <p>Hightlights From Tripper</p>
     </div>
+
+    <% current_user.trips.each do |trip| %>
+      <% location = [] %>
+      <%= location << trip.start_location %>
+    <% end %>
+
+
     <div class="trending-content">
       <div class="upper-block">
 
         <div class="container">
           <div class="row row-display">
 
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
                 <div class="card-category">Popular</div>
                 <div class="card-description">
                   <h2>Le Wagon Shanghai</h2>
@@ -88,7 +96,7 @@
                 <a class="card-link" href="#" ></a>
               </div>
 
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
                 <div class="card-category">Popular</div>
                 <div class="card-description">
                   <h2>Le Wagon Shanghai</h2>

@@ -1,5 +1,5 @@
 .trending {
-  margin: 100px;
+  margin: 100px auto;
   .trending-title {
     text-align: center;
     text-transform: uppercase;
@@ -29,6 +29,7 @@
   color: white;
   // position: relative;
   margin: 10px;
+  width: 300px;
 }
 
 .row-display {
