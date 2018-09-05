@@ -1,13 +1,15 @@
 <div class="container">
+  <!-- <div class="cards-container"> -->
   <h2>My Trips: </h2>
   <div class="row">
     <% @trips.each do |trip|%>
-      <div class="col-md-7 col-sm-3 col-xs-6">
-        <div class="modal-dialog">
+      <div class="col-md-6 col-sm-3 col-xs-6">
+        <div class="modal-dialog dashboard-card">
           <div class="modal-content">
             <div class="modal-header">
-              <div class="pull-left card-country"><h4><%= trip.start_location %></h4></div>
-              <div class="pull-right"><%= link_to "Edit", trip_path(trip), class: "btn btn-primary btn-dashboard"  %></div>
+              <div class="pull-left card-country"><h4><%= trip.start_location %> </h4></div>
+              <div class="pull-right"><%= link_to "Edit", trip_path(trip), class: "btn btn-primary btn-dashboard"  %>
+              </div>
             </div>
             <div class="modal-body">
 
@@ -15,7 +17,8 @@
                 <div class="carousel-inner">
                       <div class="item active first-img">
                         <div class="carousel-caption">
-                          <h4><%= trip.start_date %> - <%= trip.end_date %></h4>
+                          <h4><em> <%= trip.name %> </em></h4>
+                          <p><%= trip.description %></p>
                         </div>
                       </div>
                   <% @pois = PointOfInterest.where(country: trip.start_location) %>
@@ -26,7 +29,6 @@
                         <%= image_tag(leg.point_of_interest.photo, class: "img-responsive dashboard-card-img") %>
                         <div class="carousel-caption">
                           <h3><%= leg.point_of_interest.name %></h3>
-                          <p><%= leg.length_of_stay %></p>
                         </div>
                       </div>
                     <% end %>
@@ -39,20 +41,40 @@
               <a class="right carousel-control" href="#trip-<%= trip.id %>" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
               </a>
+
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                  change
+                </button>
+            </div>
+             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <!-- <span aria-hidden="true">&times;</span> -->
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <%=  simple_form_for(trip) do |f| %>
+                          <%= f.input :name %>
+                          <%= f.input :description %>
+                      <div class="modal-footer">
+                          <%= f.button :submit %>
+                      </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
           </div>
         </div>
       </div>
-      <div class="col-md-5 col-sm-3 col-xs-6">
-        <div class="info-dashboard">
-          <div class="modal-header">
-              <div class="pull-left"><h4>Share Your Trip</h4></div>
 
-            </div>
-        </div>
-      </div>
     <% end %>
   </div>
 </div>
-
+<!-- </div> -->
 </div>

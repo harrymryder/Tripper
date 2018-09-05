@@ -2,10 +2,6 @@ class TripsController < ApplicationController
 
   skip_before_action :authenticate_user!, only: :show
 
-  # def index
-  #   @trips = Trip.all
-  # end
-
   def show
     @trip = Trip.find(params[:id])
     @pois = PointOfInterest.where(country: @trip.start_location)
@@ -33,9 +29,9 @@ class TripsController < ApplicationController
     # end
   end
 
-  # def new
-  #   @trip = Trip.new
-  # end
+  def new
+    @trip = Trip.new
+  end
 
   def create
     @trip = Trip.new(trip_params)
@@ -53,6 +49,16 @@ class TripsController < ApplicationController
 
   def update
 
+    @journey = Trip.find(params[:id])
+    if @journey.update(trip_params)
+      redirect_to page_path
+    else
+      render :edit
+    end
+  end
+
+
+
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
 
@@ -67,6 +73,7 @@ class TripsController < ApplicationController
       format.html { redirect_to trip_path(@trip) }
       format.js
     end
+
   end
 
   private
