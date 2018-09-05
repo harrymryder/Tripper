@@ -22,3 +22,8 @@ module Tripper
     # the framework and any gems in your application.
   end
 end
+
+
+class Application < Rails::Application
+  config.action_view.embed_authenticity_token_in_remote_forms = true
+end

@@ -245,10 +245,10 @@ map.on('load', function() {
     });
   });
 
-  // Pop up when hovering over card
+  // Pop up when clicking on a card
 
   cards.forEach((card) => {
-    card.addEventListener('mouseover', (e) => {
+    card.addEventListener('click', (e) => {
       // var coordinates = .features[0].geometry.coordinates.slice();
       // var description = e.features[0].properties.description;
       // console.log(card.id)
@@ -257,6 +257,7 @@ map.on('load', function() {
         if(marker[2] === card.id) {
           var coordinates = [marker[1], marker[0]]
           var description = marker[2]
+
         new mapboxgl.Popup()
               .setLngLat(coordinates)
               .setHTML(description)
