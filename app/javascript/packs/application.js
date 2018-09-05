@@ -36,3 +36,8 @@ import '../components/select2';
     // event.currentTarget.classList.toggle("card-btn");
 
     // console.log(event.currentTarget)
+
+
+
+
+

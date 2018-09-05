@@ -7,5 +7,15 @@ function refreshTimeLeft(innerHTML) {
 
 refreshTimeLeft("<%= j render 'trips/loading_circle', time_left: @time_left, total_stay: @total_stay %>");
 
+var bar = new ProgressBar.Circle('#container', {
+  strokeWidth: 3,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#93B7BE',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: null
+});
 
-
+var timeLeft = 1 - ('<%= @time_left %>' / '<%= @total_stay %>')
+bar.animate(timeLeft);

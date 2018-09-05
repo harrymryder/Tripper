@@ -128,12 +128,10 @@
 }
 
 .right-container {
-  flex: 1 1 auto;
-  width: 400px;
+  // flex: 1 1 auto;
+  // width: 400px;
   margin-top: 50px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+  // display: block;
 }
 
 .edit-trip-form {
@@ -143,6 +141,7 @@
   background-color: white;
   padding: 18px;
   box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
+  margin-bottom: 50px;
   h5 {
     text-transform: uppercase;
     font-weight: lighter;
@@ -171,13 +170,19 @@
   }
 }
 
+.progress-circle {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .loading-circle {
-  position: absolute;
-  margin-top: 100px;
   h5 {
+    color: $secondary-color;
     text-transform: uppercase;
     font-weight: lighter;
     text-align: center;
+    margin-bottom: 30px;
   }
 }
 
