@@ -64,20 +64,26 @@
 }
 .mapboxgl-popup {
   max-width: 400px;
-  font-family: $body-font;
+  font-family: $headers-font;
+  text-transform: uppercase;
+  font-weight: lighter;
   color: $gray;
-  font-size: 15px;
-  padding: 20px;
+  font-size: 13px;
+  box-shadow: 1px solid gray;
   p {
-    padding: 10px;
-    margin: 0;
+    margin: 0 !important;
     font-family: $headers-font;
     text-transform: uppercase;
     font-weight: lighter;
   }
-  .mapboxgl-popup-content {
-    padding: 5px 10px;
-  }
+}
+.mapboxgl-popup-content {
+  padding: 10px !important;
+  margin: 0 !important;
+  font-family: $headers-font;
+  text-transform: uppercase;
+  font-weight: lighter;
+  box-shadow: none;
 }
 
 .pin {
