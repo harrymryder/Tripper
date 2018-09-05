@@ -269,10 +269,12 @@ map.on('load', function() {
 
   // Listen for a click on Optimize Button
   optimizeButton.addEventListener('click', (e) => {
-    for (i = 1; i < legs.length; i++) {
+    var legsTwo = JSON.parse(mapElement.dataset.legs);
+    console.log(legsTwo)
+    for (i = 1; i < legsTwo.length; i++) {
       var coords = {
-      lat: legs[i][0],
-      lng: legs[i][1]
+      lat: legsTwo[i][0],
+      lng: legsTwo[i][1]
       }
       newDropoff(coords);
       updateDropoffs(dropoffs);

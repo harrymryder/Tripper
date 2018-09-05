@@ -13,7 +13,7 @@
 <div class="trip-container">
 
   <div class="cards-wrap">
-    <h6>Things To Do in <%= @trip.start_location %>...</h6>
+    <h6><%= @trip.start_location %></h6>
     <div class="cards-container">
       <div class="row">
         <% @pois.each do |poi| %>
