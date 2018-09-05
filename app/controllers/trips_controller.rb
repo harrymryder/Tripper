@@ -59,9 +59,6 @@ class TripsController < ApplicationController
     else
       render :edit
     end
-  end
-
-
 
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
