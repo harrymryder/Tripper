@@ -114,7 +114,6 @@
 // BELOW MAP //
 
 .timeline-header {
-  text-transform: uppercase;
   text-align: center;
   color: $red;
   background-color: white;
@@ -122,6 +121,14 @@
   padding-bottom: 50px;
   margin: 0;
   box-shadow: 0 5px 5px -5px rgba(62, 9, 11, .3);
+  p {
+    color: #9c9c9c;
+    font-size: 13px;
+    margin-top: 20px;
+  }
+  h6 {
+    text-transform: uppercase;
+  }
 }
 
 .itinerary-container {
