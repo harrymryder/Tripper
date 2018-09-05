@@ -1,35 +1,29 @@
-// const cards = document.querySelectorAll(".card-box");
-
-// const plus = document.querySelectorAll(".plus");
-
-// plus.addEventListener("click", (event) => {
-//   console.log("hi there")
-//   card.classList.toggle("card-active");
-// });
-
-// const cardID = document.getElementById(`${markers[2]}`)
-
-// plus.forEach(function(element) {
-//   element.addEventListener("click", (event) => {
-//     console.log(event.currentTarget.parentNode)
-//     if (event.currentTarget.classList.contains("fa-plus")) {
-//       event.currentTarget.classList.add('fa-minus')
-//       event.currentTarget.classList.remove('fa-plus')
-//     } else {
-//       event.currentTarget.classList.remove('fa-minus')
-//       event.currentTarget.classList.add('fa-plus')
-//     }
-
-//     event.currentTarget.parentNode.classList.toggle("card-active");
-//   });
-// });
-// .style.borderColor = "green purple";
-
-// const minus = document.querySelector(".minus");
-// minus.addEventListener("click", (event) => {
-//   card.style.borderColor = "$gray";
-// });
-
-
-
-
+const more = Array.from(document.querySelectorAll(".card-btn"));
+more.forEach((btn) => {
+  btn.addEventListener('click', (event) => {
+    if (event.currentTarget.classList.contains("read-more-btn")) {
+      event.currentTarget.classList.add('read-less-btn')
+      event.currentTarget.classList.remove('read-more-btn')
+      document.querySelectorAll('.card-description').forEach((card) => {
+        card.style.display = "none";
+      })
+      document.querySelectorAll('.card-box').forEach((card) => {
+        card.style.height = "180px";
+      })
+      let cardHeight = event.currentTarget.parentNode;
+      let cardDescription = event.currentTarget.parentNode.childNodes[5];
+      cardDescription.style.display = "block";
+      cardHeight.style.height = "380px";
+    }else{
+      event.currentTarget.classList.remove('read-less-btn')
+      event.currentTarget.classList.add('read-more-btn')
+      document.querySelectorAll('.card-description').forEach((card) => {
+        card.style.display = "none";
+      })
+      let cardHeight = event.currentTarget.parentNode;
+      let cardDescription = event.currentTarget.parentNode.childNodes[5];
+      cardDescription.style.display = "none";
+      cardHeight.style.height = "180px ";
+    }
+  })
+})

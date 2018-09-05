@@ -2,10 +2,6 @@ class TripsController < ApplicationController
 
   skip_before_action :authenticate_user!, only: :show
 
-  # def index
-  #   @trips = Trip.all
-  # end
-
   def show
     @trip = Trip.find(params[:id])
     @markers = []
@@ -31,9 +27,9 @@ class TripsController < ApplicationController
     end
   end
 
-  # def new
-  #   @trip = Trip.new
-  # end
+  def new
+    @trip = Trip.new
+  end
 
   def create
     @trip = Trip.new(trip_params)
@@ -44,6 +40,25 @@ class TripsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def edit
+    @trip = Trip.find(params[:id])
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    if @trip.update(trip_params)
+      redirect_to page_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @trip = Trip.find(params[:id])
+    @trip.delete
+  end
+
   private
 
   def trip_params
