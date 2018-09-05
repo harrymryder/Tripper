@@ -205,27 +205,29 @@
 }
 
 .loading-circle {
+  display: inline-block;
+  text-align: center;
   h5 {
     color: $secondary-color;
     text-transform: uppercase;
     font-weight: lighter;
     text-align: center;
-    margin-bottom: 30px;
+    position: relative;
+    top: 45px;
   }
 }
 
 #container {
   width: 200px;
   height: 200px;
-  position: relative;
   #days-integer {
     color: $secondary-color;
     font-family: $headers-font;
     font-weight: lighter;
-    position: absolute;
+    // position: absolute;
     font-size: 35px;
-    top: 80px;
-    left: 90px;
+    top: 135px;
+    position: relative;
   }
 }
 
