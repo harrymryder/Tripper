@@ -102,6 +102,17 @@
     </ul>
   </div>
 </div>
+<script>
+var removeButton = document.querySelectorAll(".remove-from-trip");
+
+removeButton.forEach(function(element) {
+  element.addEventListener("click", function work(e) {
+    e.currentTarget.innerHTML = "<%= j render 'legs/create_button', trip: @trip, poi_id: @poi_id %>";
+  })
+    // e.removeEventListener("click", work, true)
+});
+
+</script>
 
 
 <%= javascript_pack_tag "map" %>

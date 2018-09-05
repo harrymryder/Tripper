@@ -1,12 +1,10 @@
-var addButton = document.querySelectorAll(".remove-from-trip");
+var removeButton = document.querySelectorAll(".remove-from-trip");
 
-console.log('destroy');
-
-addButton.forEach(function(element) {
-  element.addEventListener("click", function(e) {
-    e.preventdefault
+removeButton.forEach(function(element) {
+  let my_func = function work(e) {
     e.currentTarget.innerHTML = "<%= j render 'legs/create_button', trip: @trip, poi_id: @poi_id %>";
-  })
+  }
+  element.addEventListener("click", my_func)
 });
 
 
