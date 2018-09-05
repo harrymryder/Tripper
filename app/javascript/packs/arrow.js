@@ -21,13 +21,11 @@ $(window).scroll( function(){
 });
 
 
-const arrow = document.querySelector('.fa-chevron-circle-down')
+var arrow = document.querySelector('.fa-chevron-circle-down')
 
 arrow.addEventListener('click', (e) => {
-  window.scroll({
-    top: 800,
-    behavior: "smooth"
-  });
+  var header = document.querySelector('.subheader')
+  header.scrollIntoView({ block: 'start',  behavior: 'smooth' })
 })
 
 
