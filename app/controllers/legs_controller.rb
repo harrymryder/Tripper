@@ -24,6 +24,7 @@ class LegsController < ApplicationController
   end
 
   def destroy
+    # binding.pry
     @trip = Trip.find(params[:trip_id])
     @poi = PointOfInterest.find(params[:point_of_interest_id])
     @poi_id = @poi.id
