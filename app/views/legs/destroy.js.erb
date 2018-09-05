@@ -1,0 +1,3 @@
+if (document.getElementById("DLeg<%= @poi.id%>") !== null) {
+  document.getElementById("DLeg<%= @poi.id%>").innerHTML = "<%= j render 'legs/create_button', trip: @trip, poi_id: @poi.id %>";
+}

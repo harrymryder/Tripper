@@ -19,10 +19,12 @@
             <% if @trip.legs.find_by(point_of_interest_id: poi.id).nil? %>
               <div class="card-box card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
                 <h5><%= poi.name %></h5>
-                <%= link_to trip_legs_path(@trip, poi_id: poi.id) , method: :post  do  %>
-                  <p class="card-btn add-poi-btn btn">Add To Trip</p>
-                  <!-- <i class="fas fa-plus plus"></i> -->
-                <% end %>
+
+
+                <div id="createLeg<%= poi.id %>" class="add-to-trip">
+                  <%= render 'legs/create_button', trip: @trip, poi_id: poi.id %>
+                </div>
+
                 <% @id_poi = poi.id %>
                 <div class="card-description"><p><%= poi.description %></p></div>
                 <div class="card-image">
@@ -30,18 +32,16 @@
                 </div>
                 <div class="read-more"></div>
                 <p class="card-btn read-more-btn btn" id="toggle">Read more</p>
-
               </div>
-
             <% else %>
-            <div class="card-box card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
-              <h5><%= poi.name %></h5>
-              <% bla = Leg.find_by(point_of_interest_id: poi.id) %>
+              <div class="card-box card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+                <h5><%= poi.name %></h5>
+                <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
 
-                <%= link_to trip_leg_path(@trip, bla), method: :delete  do  %>
-                  <!-- <i class="fas fa-minus minus"></i> -->
-                  <p class="card-btn added-poi-btn btn">Added To Trip</p>
-                <% end %>
+                <div data-id="destroyLeg<%= poi.id %>" class="remove-from-trip">
+                  <%= render 'legs/destroy_button', trip: @trip, poi: poi, leg: leg %>
+                </div>
+
                 <% @id_poi = poi.id %>
                 <div class="card-description"><p><%= poi.description %></p></div>
                 <div class="card-image">
@@ -127,6 +127,7 @@
 
 <%= javascript_pack_tag "map" %>
 <%= javascript_pack_tag "timeline" %>
+<%= javascript_pack_tag "cards" %>
 
 <%= javascript_pack_tag 'datepicker' %>
 
