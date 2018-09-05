@@ -30,8 +30,18 @@
   // position: relative;
   margin: 10px;
   width: 300px;
+  &:hover {
+    background-size: inherit !important;
+    transition: all 5s ease;
+  }
 }
 
 .row-display {
   display: flex;
+}
+
+.trending-card-btn {
+  background-color: transparent;
+  margin-top: 120px;
+  font-family: Roboto;
 }

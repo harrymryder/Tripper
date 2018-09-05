@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   def show
     @user = User.find(current_user[:id])
     @trips = current_user.trips
-    # @poi = PointOfInterest.find(params[:poi_id])
+    @pois = PointOfInterest.all
     # @trips.each do |trip|
     #   @markers = PointOfInterest.where(country: trip.start_location).map do |poi|
     #     [poi.lat, poi.long, poi.name, poi.description, poi.url]
