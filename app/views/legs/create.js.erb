@@ -1,3 +1,5 @@
 if (document.getElementById("CLeg<%= @poi.id%>") !== null) {
   document.getElementById("CLeg<%= @poi.id%>").innerHTML = "<%= j render 'legs/destroy_button', trip: @trip, poi: @poi, leg: @leg %>";
 }
+
+document.querySelector('.timeline-container').innerHTML = "<%= j render 'trips/trip_timeline', pois: @pois %>"

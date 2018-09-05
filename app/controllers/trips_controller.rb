@@ -8,10 +8,12 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @pois = PointOfInterest.where(country: @trip.start_location)
     @markers = []
     PointOfInterest.where(country: @trip.start_location).each do |poi|
       @markers << [poi.lat, poi.long, poi.name, poi.description, poi.url, poi.photo]
     end
+
     @legs = Leg.where(trip_id: params[:id])
     @leg_list = []
     @legs.each do |leg|
