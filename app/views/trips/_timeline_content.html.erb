@@ -1,5 +1,8 @@
 <div class="timeline-content">
   <h5><%= poi.name %></h5>
+  <%= link_to trip_point_of_interest_leg_path(@trip, poi, leg), id: "DLeg#{poi.id}", method: :delete, remote: true do %>
+    <i class="fas fa-trash-alt"></i>
+  <% end %>
   <p><%= poi.description %></p>
   <p class="duration"></p>
   <div class="los_form form-inline">
