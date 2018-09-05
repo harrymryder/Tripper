@@ -1,5 +1,5 @@
 .trip-container {
-  margin: 25px auto;
+  margin: 25px 25px 0px 25px;
   width: 95vw;
   display: flex;
   align-items: center;
@@ -16,6 +16,7 @@
     text-transform: uppercase;
     margin-bottom: 30px;
     line-height: 1.6;
+    text-align: center;
   } p {
     color: $gray;
     font-family: $body-font;
@@ -23,7 +24,7 @@
   }
 }
 .cards-container {
-  height: calc(100% - 50px);
+  height: calc(100% - 100px);
   overflow-y: scroll;
   overflow-x: hidden
   // direction: rtl;
@@ -54,11 +55,12 @@
 .map-container {
   width: 600px;
   flex: 1 1 auto;
+  // height: calc(100vh - 100px);
 }
 #map {
   box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
   border-radius: 5px;
-  height: calc(100vh - 125px);
+  height: calc(100vh - 200px);
 }
 .mapboxgl-popup {
   max-width: 400px;
@@ -91,7 +93,7 @@
 .optimize-button {
   position: absolute;
   left: 50%;
-  bottom: 70px;
+  bottom: 100px;
   background-color: $secondary-color;
   color: $light-gray;
   padding: 10px 20px;
@@ -115,7 +117,11 @@
   text-transform: uppercase;
   text-align: center;
   color: $red;
-  margin-top: 150px;
+  background-color: white;
+  padding-top: 150px;
+  padding-bottom: 50px;
+  margin: 0;
+  box-shadow: 0 5px 5px -5px rgba(62, 9, 11, .3);
 }
 
 .itinerary-container {
@@ -198,5 +204,73 @@
     font-size: 35px;
     top: 80px;
     left: 90px;
+  }
+}
+
+
+// SCROLL ARROW //
+
+.fa-chevron-circle-down {
+  color: $red;
+  position: relative;
+  top: -170px;
+  font-size: 40px;
+  // animation: bounce 2s infinite;
+  cursor: pointer;
+   -webkit-animation: jump 1.5s ease 5s 1 normal ;
+  animation: jump 1.5s ease 5s 1 normal ;
+}
+@-webkit-keyframes jump {
+  0%{
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+  20%{
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+  40%{
+  -webkit-transform: translateY(-15px);
+  transform: translateY(-15px);
+  }
+  50%{
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+  60%{
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+  }
+  80%{
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+  100%{
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+}
+
+@keyframes jump {
+  0%{
+  transform: translateY(0);
+  }
+  20%{
+  transform: translateY(0);
+  }
+  40%{
+  transform: translateY(-15px);
+  }
+  50%{
+  transform: translateY(0);
+  }
+  60%{
+  transform: translateY(-5px);
+  }
+  80%{
+  transform: translateY(0);
+  }
+  100%{
+  transform: translateY(0);
   }
 }
