@@ -102,6 +102,7 @@
   &:hover {
     background: none;
     color: $red !important;
+    border: 1px $red solid !important;
   }
 }
 .read-less-btn {
@@ -112,6 +113,7 @@
   &:hover {
     background: none;
     color: $red !important;
+    border: 1px $red solid !important;
   }
 }
 .add-poi-btn {
@@ -122,6 +124,7 @@
   &:hover {
     background: none;
     color: $red !important;
+    border: 1px $red solid !important;
   }
 }
 .added-poi-btn {
@@ -132,6 +135,7 @@
   &:hover {
     background: none;
     color: $secondary-color !important;
+    border: 1px $secondary-color solid !important;
   }
 }
 // .card-box-plus{
