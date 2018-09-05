@@ -20,14 +20,14 @@ class TripsController < ApplicationController
     end
     @leg_list
 
-    total_stay = (@trip.end_date - @trip.start_date).to_i
+    @total_stay = (@trip.end_date - @trip.start_date).to_i
 
     if @trip.legs.any?
       all_los = @trip.legs.map do |leg|
         leg.length_of_stay.nil? ? 0 : leg.length_of_stay
       end
       total_los = all_los.reduce(:+)
-      @time_left = total_stay - total_los
+      @time_left = @total_stay - total_los
     end
   end
 
@@ -42,6 +42,28 @@ class TripsController < ApplicationController
       redirect_to trip_path(@trip)
     else
       redirect_to root_path
+    end
+  end
+
+  def edit
+    @trip = Trip.find(params[:id])
+  end
+
+  def update
+
+    @trip = Trip.find(params[:id])
+    @trip.update(trip_params)
+
+    @total_stay = (@trip.end_date - @trip.start_date).to_i
+    all_los = @trip.legs.map do |leg|
+      leg.length_of_stay.nil? ? 0 : leg.length_of_stay
+    end
+
+    total_los = all_los.reduce(:+)
+    @time_left = @total_stay - total_los
+    respond_to do |format|
+      format.html { redirect_to trip_path(@trip) }
+      format.js
     end
   end
 

@@ -1,0 +1,8 @@
+function refreshTimeLeft(innerHTML) {
+  // find time left
+  const timeLeft = document.getElementById('days-integer');
+  // update time left
+  timeLeft.innerHTML = innerHTML;
+}
+
+refreshTimeLeft("<%= j @time_left %>");

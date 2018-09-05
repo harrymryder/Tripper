@@ -1,40 +1,44 @@
-.dashboard {
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  margin: 30px 0;
-  // background-color: white;
 
-  .user-info {
-    background-color: white;
-    padding: 30px;
-    // border-right: solid;
-    // box-shadow: 0 7px 30px rgba(62,9,11,0.3);
-    // border-radius: 15px;
-    width: calc(100% /4);
-    .dashboard-avatar {
-      width: 140px;
-      border-radius: 50%;
-    }
-    .dashboard-btm {
+.dashboard-card {
+  width: 300px !important;
+  height: 200px;
+  border-radius: 5px;
+  background-color: white;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 7px rgba(62, 9, 11, 0.3);
+  display: block;
+}
+.card-country {
+  color: $red;
+}
+.first-img {
+  background-color: gray;
+  height: 200px !important;
 
-    }
-  }
-
-  .trips-list {
-    // margin: auto;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    .trip-left {
-      width: calc(100% /4);
-      padding: 0 20px;
-      list-style: none;
-    }
-    .trips-right {
-      margin-right: auto;
-      margin-left: 70px;
-    }
-  }
 }
 
+.modal-dialog {
+  border-radius: 5px;
+
+}
+.dashboard-card-img {
+  height: 200px !important;
+}
+
+.info-dashboard{
+  height: 318px;
+  width: 487px;
+  background-color: white;
+  box-shadow: 0 2px 7px rgba(62, 9, 11, 0.3);
+  border-radius: 5px;
+  margin-top: 29px;
+}
+.carousel-caption {
+  padding-bottom: 55px !important;
+}
+
+.btn-dashboard {
+    margin-top: 8px;
+    padding: 5px 40px;
+    border-radius: 50px;
+}

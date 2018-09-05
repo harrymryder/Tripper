@@ -1,0 +1,8 @@
+<div class="loading-circle">
+    <h5>Nights Left</h5>
+    <div id="container" data-daysleft="<%= time_left.to_json %>" data-los="<%= total_stay.to_json %>">
+      <p id="days-integer"><%= time_left %></p>
+    </div>
+</div>
+
+<%= javascript_pack_tag 'circle' %>

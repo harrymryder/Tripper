@@ -1,8 +1,21 @@
 function refreshTimeLeft(innerHTML) {
   // find time left
-  const timeLeft = document.getElementById('days-integer')
+  const timeLeft = document.querySelector('.loading-circle');
   // update time left
   timeLeft.innerHTML = innerHTML;
 }
 
-refreshTimeLeft('<%= j @time_left.to_s %>')
+refreshTimeLeft("<%= j render 'trips/loading_circle', time_left: @time_left, total_stay: @total_stay %>");
+
+var bar = new ProgressBar.Circle('#container', {
+  strokeWidth: 3,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#93B7BE',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: null
+});
+
+var timeLeft = 1 - ('<%= @time_left %>' / '<%= @total_stay %>')
+bar.animate(timeLeft);

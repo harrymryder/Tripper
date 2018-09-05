@@ -95,19 +95,34 @@
   border-radius: 5px;
 }
 .read-more-btn {
+  background-color: $red;
   position: absolute;
   bottom: 10px;
   left: 10px;
+  &:hover {
+    background: none;
+    color: $red !important;
+  }
 }
 .read-less-btn {
+  background-color: $red;
   position: absolute;
   bottom: 10px;
   left: 10px;
+  &:hover {
+    background: none;
+    color: $red !important;
+  }
 }
 .add-poi-btn {
+  background-color: $red;
   position: absolute;
   bottom: 10px;
   right: 10px;
+  &:hover {
+    background: none;
+    color: $red !important;
+  }
 }
 .added-poi-btn {
   position: absolute;
@@ -115,7 +130,8 @@
   right: 10px;
   background-color: $secondary-color;
   &:hover {
-    background-color: #7ea8af;
+    background: none;
+    color: $secondary-color !important;
   }
 }
 // .card-box-plus{
