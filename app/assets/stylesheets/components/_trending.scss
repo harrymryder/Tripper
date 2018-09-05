@@ -1,0 +1,36 @@
+.trending {
+  margin: 100px;
+  .trending-title {
+    text-align: center;
+    text-transform: uppercase;
+    color: #FF6B6B;
+  }
+  .trending-content {
+    text-align: center;
+    text-transform: uppercase;
+    color: #FF6B6B;
+    .upper-block {
+      display: flex;
+    }
+    .middle-block {
+      display: flex;
+    }
+    .lower-block {
+      display: flex;
+    }
+  }
+}
+
+.trending-card {
+  height: 270px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  background-position: center;
+  color: white;
+  // position: relative;
+  margin: 10px;
+}
+
+.row-display {
+  display: flex;
+}
