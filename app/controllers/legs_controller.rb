@@ -3,8 +3,9 @@ class LegsController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
     @poi = PointOfInterest.find(params[:poi_id])
-    @leg = Leg.new(trip_id: @trip.id, point_of_interest: @poi)
+    @leg = Leg.new(trip: @trip, point_of_interest: @poi)
     @leg.save
+    @pois = PointOfInterest.where(country: @trip.start_location)
     respond_to do |format|
       format.html { redirect_to trip_path(@trip) }
       format.js
