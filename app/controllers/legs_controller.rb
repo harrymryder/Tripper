@@ -6,6 +6,7 @@ class LegsController < ApplicationController
     @leg = Leg.new(trip: @trip, point_of_interest: @poi)
     @leg.save
     @pois = PointOfInterest.where(country: @trip.start_location)
+    @first_poi = @pois.first
     respond_to do |format|
       format.html { redirect_to trip_path(@trip) }
       format.js
