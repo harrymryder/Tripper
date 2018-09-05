@@ -2,13 +2,14 @@
   margin: 25px 25px 0px 25px;
   width: 95vw;
   display: flex;
+  height: calc(100vh - 120px);
   align-items: center;
   justify-content: space-around;
 }
 .cards-wrap {
   width: 300px;
   flex: 0 1 auto;
-  height: calc(100vh - 125px);
+  margin-bottom: 20px;
   margin-right: 25px;
   h6 {
     font-family: $headers-font;
@@ -21,6 +22,7 @@
     box-shadow: 0 3px 15px rgba(62, 9, 11, 0.3);
     border-radius: 3px;
     margin-right: 10px;
+    margin-top: 0;
     padding: 15px;
   } p {
     color: $gray;
@@ -29,7 +31,7 @@
   }
 }
 .cards-container {
-  height: calc(100% - 100px);
+  height: calc(100vh - 235px);
   overflow-y: scroll;
   overflow-x: hidden
   // direction: rtl;
@@ -60,12 +62,12 @@
 .map-container {
   width: 600px;
   flex: 1 1 auto;
-  // height: calc(100vh - 100px);
+  margin-bottom: 20px;
 }
 #map {
   box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
   border-radius: 5px;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 150px);
 }
 .mapboxgl-popup {
   max-width: 400px;
@@ -128,7 +130,7 @@
   text-align: center;
   color: $red;
   background-color: white;
-  padding-top: 150px;
+  padding-top: 100px;
   padding-bottom: 50px;
   margin: 0;
   box-shadow: 0 5px 5px -5px rgba(62, 9, 11, .3);
@@ -136,9 +138,11 @@
     color: #9c9c9c;
     font-size: 13px;
     margin-top: 20px;
+    letter-spacing: 0.3px;
   }
   h6 {
     text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -201,94 +205,57 @@
 }
 
 .loading-circle {
+  display: inline-block;
+  text-align: center;
   h5 {
     color: $secondary-color;
     text-transform: uppercase;
     font-weight: lighter;
     text-align: center;
-    margin-bottom: 30px;
+    position: relative;
+    top: 45px;
   }
 }
 
 #container {
   width: 200px;
   height: 200px;
-  position: relative;
   #days-integer {
     color: $secondary-color;
     font-family: $headers-font;
     font-weight: lighter;
-    position: absolute;
+    // position: absolute;
     font-size: 35px;
-    top: 80px;
-    left: 90px;
+    top: 135px;
+    position: relative;
   }
 }
 
+.subheader {
+  padding-top: 50px;
+}
 
 // SCROLL ARROW //
 
 .fa-chevron-circle-down {
-  color: $red;
+  color: $blue;
   position: relative;
-  top: -170px;
-  font-size: 40px;
+  top: -110px;
+  font-size: 32px;
   // animation: bounce 2s infinite;
   cursor: pointer;
-   -webkit-animation: jump 1.5s ease 5s 1 normal ;
-  animation: jump 1.5s ease 5s 1 normal ;
+   // -webkit-animation: jump 1.5s ease 5s 1 normal ;
+  // animation: jump 1.5s ease 5s infinite normal ;
+  animation: bounce_7430 6.6s ease 5s infinite;
+  transform-origin: 50% 50%;
 }
-@-webkit-keyframes jump {
-  0%{
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  }
-  20%{
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  }
-  40%{
-  -webkit-transform: translateY(-15px);
-  transform: translateY(-15px);
-  }
-  50%{
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  }
-  60%{
-  -webkit-transform: translateY(-5px);
-  transform: translateY(-5px);
-  }
-  80%{
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  }
-  100%{
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  }
-}
-
-@keyframes jump {
-  0%{
-  transform: translateY(0);
-  }
-  20%{
-  transform: translateY(0);
-  }
-  40%{
-  transform: translateY(-15px);
-  }
-  50%{
-  transform: translateY(0);
-  }
-  60%{
-  transform: translateY(-5px);
-  }
-  80%{
-  transform: translateY(0);
-  }
-  100%{
-  transform: translateY(0);
-  }
+@keyframes bounce_7430 {
+  0% { transform:translateY(0) }
+  3.0303% { transform:translateY(0) }
+  6.06061% { transform:translateY(0) }
+  12.12121% { transform:translateY(-15px) }
+  15.15152% { transform:translateY(0) }
+  18.18182% { transform:translateY(-15px) }
+  24.24242% { transform:translateY(0) }
+  100% { transform:translateY(0) }
 }
