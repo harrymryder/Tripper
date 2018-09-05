@@ -1,13 +1,17 @@
-      <div class="timeline">
-        <ul>
-
-          <% pois.each do |poi| %>
-            <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
-            <% if leg.present? %>
-              <li>
-                <%= render 'trips/timeline_content', poi: poi, leg: leg %>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
+<div class="timeline">
+  <ul>
+    <% pois.each do |poi| %>
+      <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
+      <% if leg.present? %>
+        <li>
+          <%= render 'trips/timeline_content', poi: poi, leg: leg %>
+        </li>
+      <% end %>
+    <% end %>
+    <% if first_poi.present? %>
+      <li>
+        <%= render 'trips/timeline_firstPOI', first_poi: first_poi %>
+      </li>
+    <% end %>
+  </ul>
+</div>

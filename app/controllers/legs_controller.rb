@@ -6,6 +6,17 @@ class LegsController < ApplicationController
     @leg = Leg.new(trip: @trip, point_of_interest: @poi)
     @leg.save
     @pois = PointOfInterest.where(country: @trip.start_location)
+    @first_poi = @pois.first
+    # need access to whatever @markers is
+    # binding.pry
+    @legs = Leg.where(trip_id: params[:trip_id])
+    @leg_list = []
+    @legs&.each do |leg|
+      geocode = [ leg.point_of_interest.lat, leg.point_of_interest.long ]
+      @leg_list << geocode
+    end
+    @leg_list
+
     respond_to do |format|
       format.html { redirect_to trip_path(@trip) }
       format.js
@@ -18,6 +29,18 @@ class LegsController < ApplicationController
     @poi_id = @poi.id
     @leg = Leg.find(params[:id])
     @leg.destroy
+
+    @pois = PointOfInterest.where(country: @trip.start_location)
+    @first_poi = @pois.first
+
+    @legs = Leg.where(trip_id: params[:trip_id])
+    @leg_list = []
+    @legs&.each do |leg|
+      geocode = [ leg.point_of_interest.lat, leg.point_of_interest.long ]
+      @leg_list << geocode
+    end
+    @leg_list
+
     respond_to do |format|
       format.html { redirect_to trip_path(@trip) }
       format.js

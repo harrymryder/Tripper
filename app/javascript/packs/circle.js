@@ -17,7 +17,6 @@
 
 
   const timeLeft = 1 - (daysLeft / totalStay)
-  console.log(timeLeft)
   bar.animate(timeLeft);  // Number from 0.0 to 1.0
 
 
