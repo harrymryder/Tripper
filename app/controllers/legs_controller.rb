@@ -5,7 +5,6 @@ class LegsController < ApplicationController
     @poi = PointOfInterest.find(params[:poi_id])
     @leg = Leg.new(trip_id: @trip.id, point_of_interest: @poi)
     @leg.save
-
     respond_to do |format|
       format.html { redirect_to trip_path(@trip) }
       format.js

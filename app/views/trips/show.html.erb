@@ -38,7 +38,7 @@
                 <h5><%= poi.name %></h5>
                 <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
 
-                <div data-id="<%= poi.id %>" class="remove-from-trip">
+                <div data-id="destroyLeg<%= poi.id %>" class="remove-from-trip">
                   <%= render 'legs/destroy_button', trip: @trip, poi: poi, leg: leg %>
                 </div>
 
@@ -102,17 +102,7 @@
     </ul>
   </div>
 </div>
-<script>
-var removeButton = document.querySelectorAll(".remove-from-trip");
 
-removeButton.forEach(function(element) {
-  element.addEventListener("click", function work(e) {
-    e.currentTarget.innerHTML = "<%= j render 'legs/create_button', trip: @trip, poi_id: @poi_id %>";
-  })
-    // e.removeEventListener("click", work, true)
-});
-
-</script>
 
 
 <%= javascript_pack_tag "map" %>
