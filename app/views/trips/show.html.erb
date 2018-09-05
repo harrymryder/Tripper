@@ -115,9 +115,8 @@
         <% end %>
     </div>
 
-    <div class="loading-circle">
-      <p><%= @time_left %></p>
-      <%#= render 'loading_circle', time_left: @time_left, total_stay: @total_stay %>
+    <div class="progress-circle">
+      <%= render 'loading_circle', time_left: @time_left, total_stay: @total_stay %>
     </div>
 
   </div>
@@ -128,7 +127,7 @@
 
 <%= javascript_pack_tag "map" %>
 <%= javascript_pack_tag "timeline" %>
-<%= javascript_pack_tag "circle" %>
+
 <%= javascript_pack_tag 'datepicker' %>
 
 
