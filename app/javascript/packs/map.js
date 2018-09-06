@@ -1,4 +1,4 @@
-const cards = document.querySelectorAll(".card-box");
+const cards = document.querySelectorAll(".card-live");
 
 const plus = document.querySelectorAll(".plus");
 
