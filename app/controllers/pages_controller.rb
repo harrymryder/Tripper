@@ -16,6 +16,11 @@ class PagesController < ApplicationController
     #   end
     # end
   end
+
+  def dashboard
+    @trips = current_user.trips
+    @pois = PointOfInterest.all
+  end
   # to display mutiple pois in the map
   # current_user.trips.each do |trip|
   #   @markers = PointOfInterest.where(country: trip.start_location).map do |poi|
