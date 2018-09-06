@@ -51,16 +51,28 @@
   padding: 50px 0;
 }
 .t-plans-sub-heading {
-  margin: 50px;
-  h3 {
-    text-transform: uppercase;
-  }
+  margin-top: 100px;
+  margin-bottom: 50px;
 }
 .trand-cities {
   color: $gray;
 }
 .plans-sub-header {
+  font-family: $headers-font;
   color: $red;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  text-align: center;
+  letter-spacing: 3px;
+  box-shadow: 0 3px 15px rgba(62, 9, 11, 0.3);
+  border-radius: 3px;
+  margin-right: 10px;
+  margin-top: 0;
+  padding: 15px;
+  margin: 0 auto;
+  font-size: 15px;
+  width: 600px;
 }
 .icon {
   color: $red;
@@ -71,3 +83,63 @@
   margin: 0;
   font-weight: lighter;
 }
+
+
+// TRENDING //
+
+.trending {
+  margin: 100px auto;
+  .trending-title {
+    text-align: center;
+    text-transform: uppercase;
+    color: #FF6B6B;
+  }
+  .trending-content {
+    text-align: center;
+    text-transform: uppercase;
+    color: #FF6B6B;
+    .upper-block {
+      display: flex;
+
+    }
+    .middle-block {
+      display: flex;
+    }
+    .lower-block {
+      display: flex;
+    }
+  }
+}
+
+.trending-card {
+  height: 270px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  background-position: center;
+  color: white;
+  // position: relative;
+  margin: 10px;
+  width: 300px;
+  &:hover {
+    background-size: inherit !important;
+    transition: all 5s ease;
+  }
+}
+
+.row-display {
+  display: flex;
+  justify-content: space-around;
+}
+
+.trending-card-btn {
+  background-color: transparent;
+  margin-top: 120px;
+  font-family: Roboto;
+}
+
+.trending-h {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+
