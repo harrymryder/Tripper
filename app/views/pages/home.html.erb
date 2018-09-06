@@ -83,13 +83,13 @@
 
       <div class="col-xs-12 col-lg-4 trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522786742203-b90a32bde451?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34fb43f9fd4896c8ef4fbba115a37e80&auto=format&fit=crop&w=633&q=80');">
         <%= simple_form_for @trip do |f| %>
-          <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
+          <%= f.input :start_location, :as => :hidden, :input_html => { :value => "South Africa" } %>
           <% start_date = Date.new(2018, 04, 11) %>
           <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
           <% end_date = Date.new(2018, 04, 21) %>
           <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
 
-          <%= f.button :submit, 'Bankholiday Away in South Africa', class: "trending-card-btn" %>
+          <%= f.button :submit, 'Bankholiday in South Africa', class: "trending-card-btn" %>
         <% end %>
       </div>
 
