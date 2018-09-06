@@ -269,8 +269,8 @@ map.on('load', function() {
   // Listen for a click on Optimize Button
   optimizeButton.addEventListener('click', (e) => {
     var legsTwo = JSON.parse(mapElement.dataset.legs);
-    console.log('optimise button pressed')
-    console.log(legsTwo)
+    // console.log('optimise button pressed')
+    // console.log(legsTwo)
     for (i = 0; i < legsTwo.length; i++) {
       var coords = {
       lat: legsTwo[i][0],
