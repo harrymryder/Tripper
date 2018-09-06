@@ -1,9 +1,12 @@
 <div class="container">
-  <!-- <div class="cards-container"> -->
-  <h2>My Trips: </h2>
+
+  <h2 class="title">My Trips: </h2>
+
+  <div class="dash-container cards-container">
+
   <div class="row">
     <% @trips.each do |trip|%>
-      <div class="col-md-6 col-sm-12 col-xs-12">
+      <div class="col-lg-6 col-md-12 col-xs-12">
         <div class="modal-dialog dashboard-card">
           <div class="modal-content">
             <div class="modal-header">
@@ -15,15 +18,16 @@
 
               <div  class="carousel slide" id="trip-<%= trip.id %>" data-interval="false">
                 <div class="carousel-inner">
-                      <div class="item active first-img">
-                        <div class="carousel-caption">
-
-                          <h4><em> <%= trip.name %> </em></h4>
-                          <p><%= trip.description %></p>
-                        </div>
-                      </div>
+                 <div class="item active ">
+                    <%= image_tag('japan-mount-fuji.jpg', class: "img-responsive dashboard-card-img") %>
+                    <div class="carousel-caption">
+                      <h4>See Descriptions </h4>
+                    </div>
+                  </div>
                   <% @pois = PointOfInterest.where(country: trip.start_location) %>
                   <% @pois.each do |poi| %>
+                    <% @leg = Leg.where(point_of_interest_id: poi.id) %>
+
                     <% @legs = Leg.where(point_of_interest_id: poi.id) %>
                     <% @legs.each do |leg| %>
                       <div class="item">
@@ -44,11 +48,11 @@
               </a>
 
             </div>
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                   change
                 </button>
-            </div>
+            </div> -->
              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -77,5 +81,6 @@
     <% end %>
   </div>
 </div>
-<!-- </div> -->
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
