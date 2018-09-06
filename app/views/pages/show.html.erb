@@ -3,7 +3,7 @@
   <h2>My Trips: </h2>
   <div class="row">
     <% @trips.each do |trip|%>
-      <div class="col-md-6 col-sm-3 col-xs-6">
+      <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="modal-dialog dashboard-card">
           <div class="modal-content">
             <div class="modal-header">
@@ -17,6 +17,7 @@
                 <div class="carousel-inner">
                       <div class="item active first-img">
                         <div class="carousel-caption">
+
                           <h4><em> <%= trip.name %> </em></h4>
                           <p><%= trip.description %></p>
                         </div>
