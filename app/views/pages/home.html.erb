@@ -2,57 +2,54 @@
 
 <section id="about" class="trand-cities">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="t-plans-sub-heading">
-          <h3 class="plans-sub-header">Use Tripper to Plan Your Perfect Holiday</h3>
 
-          <p class="sub-heading">Explore features of Tripper to plan your trip</p>
-        </div>
-        <div class="free-t-planner">
+    <div class="t-plans-sub-heading">
+      <h3 class="plans-sub-header">Use Tripper to Plan Your Perfect Holiday</h3>
+    </div>
+    <div class="free-t-planner">
 
-          <div class="content-container">
-            <!-- <div class="home-left-container"> -->
-              <div class="free-trip-p-container">
-                <i class="icon fas fa-calendar-alt"></i>
-                <p>
-                  <label class="label-header">Personalized Trip Planning</label><br>
-                  <span>Plan your perfect trip based on your preferences and time available</span>
-                </p>
-              </div>
-              <div class="free-trip-p-container">
-                <i class="icon fa fa-clock"></i>
-                <p>
-                  <label class="label-header">A fully customised itinerary</label><br>
-                  <span>Showing you how your time will be split between travel and the rest of your holiday</span>
-                </p>
-              </div>
-              <div class="free-trip-p-container">
-                <i class="icon fas fa-walking" style="margin-right: 40px;"></i>
-                <p>
-                  <label class="label-header">Minimised travel time</label><br>
-                  <span>Let us optimise your itinerary's route to minimise time spent travelling</span>
-                </p>
-              </div>
-            <!-- </div> -->
-              <div class="free-trip-p-container">
-                <i class="icon fas fa-users"></i>
-                <p>
-                  <label class="label-header">Plan with others</label><br>
-                  <span>Easily plan a trip with your friends, family and colleagues</span>
-                </p>
-              </div>
+      <div class="content-container">
+        <!-- <div class="home-left-container"> -->
+          <div class="free-trip-p-container">
+            <div class="free-trip-header">
+              <i class="icon fas fa-calendar-alt"></i>
+              <h5>Personalized Trip Planning</h5>
             </div>
+            <p>Plan your perfect trip based on your preferences and time available</p>
           </div>
-
+          <div class="free-trip-p-container">
+            <div class="free-trip-header">
+              <i class="icon fa fa-clock"></i>
+              <h5>A fully customised itinerary</h5>
+            </div>
+            <p>Showing you how your time will be split between travel and the rest of your holiday</p>
+          </div>
+          <div class="free-trip-p-container">
+            <div class="free-trip-header">
+              <i class="icon fas fa-walking"></i>
+              <h5>Minimised travel time</h5>
+            </div>
+            <p>Let us optimise your itinerary's route to minimise time spent travelling</p>
+          </div>
+        <!-- </div> -->
+          <div class="free-trip-p-container">
+            <div class="free-trip-header">
+              <i class="icon fas fa-users"></i>
+              <h5>Plan with others</h5>
+            </div>
+            <p>Easily plan a trip with your friends, family and colleagues</p>
+          </div>
         </div>
       </div>
+
     </div>
+
   </div>
 </section>
 
 
 <section>
+
   <div class="container trending">
     <div class="trending-title">
       <h3>Trending Destinations</h3>
@@ -105,54 +102,53 @@
 
       </div>
 
-      <!-- <div class="middle-block">
 
-        <div class="container">
-          <div class="row row-display">
+  <div class="trending-h">
+    <h3 class="plans-sub-header trending-header">Trending Destinations</h3>
+  </div>
 
-            <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522786742203-b90a32bde451?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34fb43f9fd4896c8ef4fbba115a37e80&auto=format&fit=crop&w=633&q=80');">
-              <%= simple_form_for @trip do |f| %>
-                <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
-                <% start_date = Date.new(2018, 04, 11) %>
-                <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
-                <% end_date = Date.new(2018, 04, 21) %>
-                <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
+  <div class="trending-cards">
+    <div class="row">
 
-                <%= f.button :submit, 'Bankhliday Away in South Africa', class: "trending-card-btn" %>
-              <% end %>
-            </div>
+      <div class="col-xs-12 col-lg-4 trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1532695149815-4b88018cd70a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37ce43625009c1e56e495cadd29340b4&auto=format&fit=crop&w=700&q=80');">
+        <%= simple_form_for @trip do |f| %>
+          <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
+          <% start_date = Date.new(2018, 12, 23) %>
+          <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+          <% end_date = Date.new(2018, 12, 29) %>
+          <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
 
-
-          </div>
-        </div>
-
+          <%= f.button :submit, 'Christmas in Finland', class: "trending-card-btn" %>
+        <% end %>
       </div>
 
-      <div class="lower-block">
+      <div class="col-xs-12 col-lg-4 trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1526233185109-093c40faef34?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d692491bac3d6b95352c6df662197513&auto=format&fit=crop&w=1047&q=80');">
+        <%= simple_form_for @trip do |f| %>
+          <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Morocco" } %>
+          <% start_date = Date.new(2018, 05, 18) %>
+          <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+          <% end_date = Date.new(2018, 5, 28) %>
+          <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
 
-        <div class="container">
-          <div class="row row-display">
+          <%= f.button :submit, 'Dessert Tour in Morocco', class: "trending-card-btn" %>
+        <% end %>
+      </div>
 
-            <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1532695149815-4b88018cd70a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37ce43625009c1e56e495cadd29340b4&auto=format&fit=crop&w=700&q=80');">
-              <%= simple_form_for @trip do |f| %>
-                <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
-                <% start_date = Date.new(2018, 03, 23) %>
-                <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
-                <% end_date = Date.new(2018, 03, 29) %>
-                <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
+      <div class="col-xs-12 col-lg-4 trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522786742203-b90a32bde451?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34fb43f9fd4896c8ef4fbba115a37e80&auto=format&fit=crop&w=633&q=80');">
+        <%= simple_form_for @trip do |f| %>
+          <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
+          <% start_date = Date.new(2018, 04, 11) %>
+          <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+          <% end_date = Date.new(2018, 04, 21) %>
+          <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
 
-                <%= f.button :submit, 'Summersun in Thailand', class: "trending-card-btn" %>
-              <% end %>
-            </div>
-
-
-          </div>
-        </div>
-
-      </div> -->
+          <%= f.button :submit, 'Bankholiday Away in South Africa', class: "trending-card-btn" %>
+        <% end %>
+      </div>
 
     </div>
   </div>
+
 </section>
 
 <%#= render 'shared/cards' %>

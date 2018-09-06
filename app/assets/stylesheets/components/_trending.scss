@@ -1,53 +1,93 @@
-.trending {
-  margin: 100px auto !important;
-  .trending-title {
-    text-align: center;
-    text-transform: uppercase;
-    color: #FF6B6B;
-    p {
-      color: #7f7f7f;
-      text-transform: none;
-    }
-  }
-  .trending-content {
-    text-align: center;
-    text-transform: uppercase;
-    color: #FF6B6B;
-    .upper-block {
-      display: flex;
-    }
-    .middle-block {
-      display: flex;
-    }
-    .lower-block {
-      display: flex;
-    }
-  }
-}
 
-.trending-card {
-  height: 270px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  background-size: cover;
-  background-position: center;
-  color: white;
-  // position: relative;
-  margin: 10px;
-  width: 300px;
-  transition: background-size 3s ease;
-  &:hover {
-    transition: background-size 3s ease;
-    background-size: inherit;
-  }
-}
+// .trending {
+//   margin: 100px auto;
+//   .trending-title {
+//     text-align: center;
+//     text-transform: uppercase;
+//     color: #FF6B6B;
+//   }
+//   .trending-content {
+//     text-align: center;
+//     text-transform: uppercase;
+//     color: #FF6B6B;
+//     .upper-block {
+//       display: flex;
 
-.row-display {
-  display: flex;
-  justify-content: space-around;
-}
+//     }
+//     .middle-block {
+//       display: flex;
+//     }
+//     .lower-block {
+//       display: flex;
+//     }
+//   }
+// }
 
-.trending-card-btn {
-  background-color: transparent;
-  margin-top: 120px;
-  font-family: Roboto;
-}
+// .trending-card {
+//   height: 270px;
+//   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+//   background-size: cover !important;
+//   background-position: center;
+//   color: white;
+//   // position: relative;
+//   margin: 10px;
+//   width: 300px;
+//   &:hover {
+//     background-size: inherit !important;
+//     transition: all 5s ease;
+//   }
+// }
+
+// .trending {
+//   margin: 100px auto !important;
+//   .trending-title {
+//     text-align: center;
+//     text-transform: uppercase;
+//     color: #FF6B6B;
+//     p {
+//       color: #7f7f7f;
+//       text-transform: none;
+//     }
+//   }
+//   .trending-content {
+//     text-align: center;
+//     text-transform: uppercase;
+//     color: #FF6B6B;
+//     .upper-block {
+//       display: flex;
+//     }
+//     .middle-block {
+//       display: flex;
+//     }
+//     .lower-block {
+//       display: flex;
+//     }
+//   }
+// }
+
+// .trending-card {
+//   height: 270px;
+//   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+//   background-size: cover;
+//   background-position: center;
+//   color: white;
+//   // position: relative;
+//   margin: 10px;
+//   width: 300px;
+//   transition: background-size 3s ease;
+//   &:hover {
+//     transition: background-size 3s ease;
+//     background-size: inherit;
+//   }
+// }
+
+// .row-display {
+//   display: flex;
+//   justify-content: space-around;
+// }
+
+// .trending-card-btn {
+//   background-color: transparent;
+//   margin-top: 120px;
+//   font-family: Roboto;
+// }
