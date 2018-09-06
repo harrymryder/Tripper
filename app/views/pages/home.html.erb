@@ -51,107 +51,53 @@
 
 
 <section>
-  <div class="container trending">
 
   <div class="trending-h">
     <h3 class="plans-sub-header trending-header">Trending Destinations</h3>
   </div>
 
+  <div class="trending-cards">
+    <div class="row">
 
-    <div class="trending-content">
-      <div class="upper-block">
+      <div class="col-xs-12 col-lg-4 trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1532695149815-4b88018cd70a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37ce43625009c1e56e495cadd29340b4&auto=format&fit=crop&w=700&q=80');">
+        <%= simple_form_for @trip do |f| %>
+          <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
+          <% start_date = Date.new(2018, 12, 23) %>
+          <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+          <% end_date = Date.new(2018, 12, 29) %>
+          <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
 
-        <div class="container">
-          <div class="row row-display">
-
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1532695149815-4b88018cd70a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37ce43625009c1e56e495cadd29340b4&auto=format&fit=crop&w=700&q=80');">
-                <%= simple_form_for @trip do |f| %>
-                  <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
-                  <% start_date = Date.new(2018, 12, 23) %>
-                  <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
-                  <% end_date = Date.new(2018, 12, 29) %>
-                  <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
-
-                  <%= f.button :submit, 'Christmas in Finland', class: "trending-card-btn" %>
-                <% end %>
-              </div>
-
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1526233185109-093c40faef34?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d692491bac3d6b95352c6df662197513&auto=format&fit=crop&w=1047&q=80');">
-                <%= simple_form_for @trip do |f| %>
-                  <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Morocco" } %>
-                  <% start_date = Date.new(2018, 05, 18) %>
-                  <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
-                  <% end_date = Date.new(2018, 5, 28) %>
-                  <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
-
-                  <%= f.button :submit, 'Dessert Tour in Morocco', class: "trending-card-btn" %>
-                <% end %>
-              </div>
-
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522786742203-b90a32bde451?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34fb43f9fd4896c8ef4fbba115a37e80&auto=format&fit=crop&w=633&q=80');">
-                <%= simple_form_for @trip do |f| %>
-                  <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
-                  <% start_date = Date.new(2018, 04, 11) %>
-                  <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
-                  <% end_date = Date.new(2018, 04, 21) %>
-                  <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
-
-                  <%= f.button :submit, 'Bankholiday Away in South Africa', class: "trending-card-btn" %>
-                <% end %>
-              </div>
-          </div>
-        </div>
-
+          <%= f.button :submit, 'Christmas in Finland', class: "trending-card-btn" %>
+        <% end %>
       </div>
 
-      <!-- <div class="middle-block">
+      <div class="col-xs-12 col-lg-4 trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1526233185109-093c40faef34?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d692491bac3d6b95352c6df662197513&auto=format&fit=crop&w=1047&q=80');">
+        <%= simple_form_for @trip do |f| %>
+          <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Morocco" } %>
+          <% start_date = Date.new(2018, 05, 18) %>
+          <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+          <% end_date = Date.new(2018, 5, 28) %>
+          <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
 
-        <div class="container">
-          <div class="row row-display">
-
-            <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522786742203-b90a32bde451?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34fb43f9fd4896c8ef4fbba115a37e80&auto=format&fit=crop&w=633&q=80');">
-              <%= simple_form_for @trip do |f| %>
-                <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
-                <% start_date = Date.new(2018, 04, 11) %>
-                <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
-                <% end_date = Date.new(2018, 04, 21) %>
-                <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
-
-                <%= f.button :submit, 'Bankhliday Away in South Africa', class: "trending-card-btn" %>
-              <% end %>
-            </div>
-
-
-          </div>
-        </div>
-
+          <%= f.button :submit, 'Dessert Tour in Morocco', class: "trending-card-btn" %>
+        <% end %>
       </div>
 
-      <div class="lower-block">
+      <div class="col-xs-12 col-lg-4 trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522786742203-b90a32bde451?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34fb43f9fd4896c8ef4fbba115a37e80&auto=format&fit=crop&w=633&q=80');">
+        <%= simple_form_for @trip do |f| %>
+          <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
+          <% start_date = Date.new(2018, 04, 11) %>
+          <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+          <% end_date = Date.new(2018, 04, 21) %>
+          <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
 
-        <div class="container">
-          <div class="row row-display">
-
-            <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1532695149815-4b88018cd70a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37ce43625009c1e56e495cadd29340b4&auto=format&fit=crop&w=700&q=80');">
-              <%= simple_form_for @trip do |f| %>
-                <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
-                <% start_date = Date.new(2018, 03, 23) %>
-                <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
-                <% end_date = Date.new(2018, 03, 29) %>
-                <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
-
-                <%= f.button :submit, 'Summersun in Thailand', class: "trending-card-btn" %>
-              <% end %>
-            </div>
-
-
-          </div>
-        </div>
-
-      </div> -->
+          <%= f.button :submit, 'Bankholiday Away in South Africa', class: "trending-card-btn" %>
+        <% end %>
+      </div>
 
     </div>
   </div>
+
 </section>
 
 <%#= render 'shared/cards' %>

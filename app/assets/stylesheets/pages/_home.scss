@@ -87,28 +87,11 @@
 
 // TRENDING //
 
-.trending {
-  margin: 100px auto;
-  .trending-title {
-    text-align: center;
-    text-transform: uppercase;
-    color: #FF6B6B;
-  }
-  .trending-content {
-    text-align: center;
-    text-transform: uppercase;
-    color: #FF6B6B;
-    .upper-block {
-      display: flex;
-
-    }
-    .middle-block {
-      display: flex;
-    }
-    .lower-block {
-      display: flex;
-    }
-  }
+.trending-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
 .trending-card {
@@ -120,6 +103,7 @@
   // position: relative;
   margin: 10px;
   width: 300px;
+  text-align: center;
   &:hover {
     background-size: inherit !important;
     transition: all 5s ease;
