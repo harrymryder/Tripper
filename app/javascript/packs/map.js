@@ -38,7 +38,6 @@ api_input = api_input.slice(0, -1);
 fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?access_token=${mapboxgl.accessToken}`)
   .then(response => response.json())
   .then((data) => {
-    // console.log(data)
     const tripLegs = data.trips[0].legs
     tripLegs.forEach((leg) => {
       const legDurationsInMinutes = leg.duration / 60
@@ -111,44 +110,44 @@ var map = new mapboxgl.Map({
 
 map.on('load', function() {
   var marker = document.createElement('div');
-  marker.classList = 'truck';
+  // marker.classList = 'truck';
 
-  // Create a new marker
-  truckMarker = new mapboxgl.Marker(marker)
-    .setLngLat(startPoint)
-    .addTo(map);
+  // // Create a new marker
+  // truckMarker = new mapboxgl.Marker(marker)
+  //   .setLngLat(startPoint)
+  //   .addTo(map);
 
-  map.addLayer({
-    id: 'warehouse',
-    type: 'circle',
-    source: {
-      data: warehouse,
-      type: 'geojson'
-    },
-    paint: {
-      'circle-radius': 15,
-      'circle-color': 'white',
-      'circle-stroke-color': '#93B7BE',
-      'circle-stroke-width': 3
-    }
-  });
+  // map.addLayer({
+  //   id: 'warehouse',
+  //   type: 'circle',
+  //   source: {
+  //     data: warehouse,
+  //     type: 'geojson'
+  //   },
+  //   paint: {
+  //     'circle-radius': 15,
+  //     'circle-color': 'white',
+  //     'circle-stroke-color': '#93B7BE',
+  //     'circle-stroke-width': 3
+  //   }
+  // });
 
-  // Create a symbol layer on top of circle layer
-  map.addLayer({
-    id: 'warehouse-symbol',
-    type: 'symbol',
-    source: {
-      data: warehouse,
-      type: 'geojson'
-    },
-    layout: {
-      'icon-image': 'marker-15',
-      'icon-size': 0
-    },
-    paint: {
-      'text-color': '#3887be'
-    }
-  });
+  // // Create a symbol layer on top of circle layer
+  // map.addLayer({
+  //   id: 'warehouse-symbol',
+  //   type: 'symbol',
+  //   source: {
+  //     data: warehouse,
+  //     type: 'geojson'
+  //   },
+  //   layout: {
+  //     'icon-image': 'marker-15',
+  //     'icon-size': 0
+  //   },
+  //   paint: {
+  //     'text-color': '#3887be'
+  //   }
+  // });
 
   map.addLayer({
     id: 'dropoffs-symbol',
@@ -270,8 +269,9 @@ map.on('load', function() {
   // Listen for a click on Optimize Button
   optimizeButton.addEventListener('click', (e) => {
     var legsTwo = JSON.parse(mapElement.dataset.legs);
+    console.log('optimise button pressed')
     console.log(legsTwo)
-    for (i = 1; i < legsTwo.length; i++) {
+    for (i = 0; i < legsTwo.length; i++) {
       var coords = {
       lat: legsTwo[i][0],
       lng: legsTwo[i][1]
@@ -328,7 +328,35 @@ map.on('load', function() {
     }
   }, 'waterway-label');
 
-//end of map load
+// zoom map to fit all markers
+
+///set map bound on initialisation
+  var top_right = [markers[0][0], markers[0][1]]
+  var bottom_left = [markers[0][0], markers[0][1]]
+  markers.forEach((marker) => {
+
+    if (marker [0] > top_right[0]) {
+      top_right[0] = marker[0]
+    }
+    if (marker [0] < bottom_left[0]) {
+      bottom_left[0] = marker[0]
+    }
+    if (marker [1] > top_right[1]) {
+      top_right[1] = marker[1]
+    }
+    if (marker [1] < bottom_left[1]) {
+      bottom_left[1] = marker[1]
+    }
+  });
+  map.fitBounds([[
+    bottom_left[1],bottom_left[0]
+    ],[
+    top_right[1],top_right[0]
+    ]], {
+    padding: {top: 25, bottom:25, left: 25, right: 25}
+  });
+
+// end of map load
 });
 
 var warehouse = turf.featureCollection([turf.point(alsoStartPoint)]);
@@ -421,6 +449,8 @@ function assembleQueryURL() {
 
   // Set the profile to `driving`
   // Coordinates will include the current location of the truck,
+  console.log('mapbox being sent to api')
+  console.log(coordinates)
   return 'https://api.mapbox.com/optimized-trips/v1/mapbox/driving/' + coordinates.join(';') + '?distributions=' + distributions.join(';') + '&overview=full&steps=true&geometries=geojson&source=first&access_token=' + mapboxgl.accessToken;
 }
 
