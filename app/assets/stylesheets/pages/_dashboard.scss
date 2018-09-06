@@ -1,11 +1,48 @@
+.carousel-control.left {
+    background-image: none !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+}
+.carousel-control.right {
+    background-image:  none !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+}
+.modal-body {
+    position: relative;
+    padding: 0 !important;
+    height: 250px;
+  }
+.title {
+    background-color: white;
+    box-shadow: 0 3px 15px rgba(62, 9, 11, 0.3);
+    font-family: $headers-font;
+    color: $primary-color;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    margin: 30px 250px;
+    padding: 5px 0;
+}
 .container {
   // position: fixed;
   margin: 0 0;
   width: 100vw;
   align-content: center;
 }
+.dash-container {
+  // position: fixed;
+  width: 1340px;
+  // box-shadow: 0 3px 15px rgba(62, 9, 11, 0.3);
+  // background-color: white;
+  margin-top: 20px;
+  margin-left: 50px;
+  // border-radius: 5px;
+  height: 700px;
+
+}
 .dashboard-card {
-  margin: 20px 20px;
+  margin: 50px 0px 0px 0px;
 }
 .card-country {
   color: $red;
@@ -21,7 +58,7 @@
 
 }
 .dashboard-card-img {
-  height: 200px !important;
+  height: 250px !important;
 }
 
 .info-dashboard{
@@ -40,7 +77,7 @@
 
   }
   h3 {
-    padding-bottom: 50px !important;
+    padding-bottom: 80px !important;
   }
 }
 

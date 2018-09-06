@@ -8,43 +8,41 @@
       <div class="row">
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
-
+            <!-- IF POI ISN`T A LEG -->
             <% if @trip.legs.find_by(point_of_interest_id: poi.id).nil? %>
-              <div class="card-box card-box-plus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
-                <h5><%= poi.name %></h5>
-
-
-                <div id="createLeg<%= poi.id %>" class="add-to-trip">
-                  <%= render 'legs/create_button', trip: @trip, poi_id: poi.id %>
+              <div class="card-live id="<% poi[:name] %>" data-name="<% poi[:name] %>">
+                <div class="card-image" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 50%), url('<%= image_path poi.photo %>');">
+                  <h5><%= poi.name %></h5>
                 </div>
-
-                <% @id_poi = poi.id %>
-                <div class="card-description"><p><%= poi.description %></p></div>
-                <div class="card-image">
-                  <%= image_tag poi.photo, class: "card-img" %>
+                <div class="collapse card-box" id="collapse-<%= poi[:name] %>">
+                  <p><%= poi.description %></p>
                 </div>
-                <div class="read-more"></div>
-                <p class="card-btn read-more-btn btn" id="toggle">Read more</p>
+                <div class="card-btns">
+                  <p class="card-btn read-more-btn btn" data-toggle="collapse" data-target="#collapse-<%= poi[:name] %>" id="toggle">Read more</p>
+                  <div id="createLeg<%= poi.id %>" class="add-to-trip">
+                    <%= render 'legs/create_button', trip: @trip, poi_id: poi.id %>
+                  </div>
+                </div>
               </div>
+              <!-- IF POI IS A LEG -->
             <% else %>
-              <div class="card-box card-box-minus card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
-                <h5><%= poi.name %></h5>
-                <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
-
-                <div data-id="destroyLeg<%= poi.id %>" class="remove-from-trip">
-                  <%= render 'legs/destroy_button', trip: @trip, poi: poi, leg: leg %>
+              <div class="card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
+                <div class="card-image" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 50%), url('<%= image_path poi.photo %>');">
+                  <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
+                  <h5><%= poi.name %></h5>
                 </div>
-
-                <% @id_poi = poi.id %>
-                <div class="card-description"><p><%= poi.description %></p></div>
-                <div class="card-image">
-                  <%= image_tag poi.photo, class: "card-img" %>
+                <div class="collapse card-box" id="collapse-<%= poi[:name] %>">
+                  <p class="open-description"><%= poi.description %></p>
                 </div>
-                <p class="card-btn read-more-btn btn" id="toggle">Read More</p>
+                <div class="card-btns">
+                  <p class="card-btn read-more-btn btn" data-toggle="collapse" data-target="#collapse-<%= poi[:name] %>" id="toggle">Read more</p>
+                  <div data-id="destroyLeg<%= poi.id %>" class="remove-from-trip">
+                    <%= render 'legs/destroy_button', trip: @trip, poi: poi, leg: leg %>
+                  </div>
+                </div>
               </div>
             <% end %>
           </div>
-
           <%= javascript_pack_tag "cards" %>
         <% end %>
       </div>
