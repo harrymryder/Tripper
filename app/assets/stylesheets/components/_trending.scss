@@ -1,9 +1,13 @@
 .trending {
-  margin: 100px auto;
+  margin: 100px auto !important;
   .trending-title {
     text-align: center;
     text-transform: uppercase;
     color: #FF6B6B;
+    p {
+      color: #7f7f7f;
+      text-transform: none;
+    }
   }
   .trending-content {
     text-align: center;
@@ -11,7 +15,6 @@
     color: #FF6B6B;
     .upper-block {
       display: flex;
-
     }
     .middle-block {
       display: flex;
@@ -25,15 +28,16 @@
 .trending-card {
   height: 270px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  background-size: cover !important;
+  background-size: cover;
   background-position: center;
   color: white;
   // position: relative;
   margin: 10px;
   width: 300px;
+  transition: background-size 3s ease;
   &:hover {
-    background-size: inherit !important;
-    transition: all 5s ease;
+    transition: background-size 3s ease;
+    background-size: inherit;
   }
 }
 
