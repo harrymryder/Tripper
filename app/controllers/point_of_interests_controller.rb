@@ -7,9 +7,7 @@ class PointOfInterestsController < ApplicationController
 
   def create
     @poi = PointOfInterest.new(poi_params)
-
     redirect_to trip_path
-
   end
 
   private

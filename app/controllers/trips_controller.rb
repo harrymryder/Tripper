@@ -55,7 +55,7 @@ class TripsController < ApplicationController
     else
       render :edit
     end
-  end
+
 
 
 
