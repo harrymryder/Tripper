@@ -69,12 +69,16 @@
     </div>
   </div>
 
-
-<div class="itinerary-container">
-  <div class="timeline-container">
-    <%= render 'trip_timeline', pois: @pois, first_poi: @first_poi, trip: @trip %>
+<!-- note below, if statement to be moved to JS  -->
+<% if @legs.length < 2 %>
+  <div class="t-plans-sub-heading">
+    <h6 class="subheader">Please choose where you will be flying to and at least one other location</h3>
   </div>
-
+<% else %>
+  <div class="itinerary-container">
+    <div class="timeline-container">
+      <%= render 'trip_timeline', pois: @pois, first_poi: @first_poi, trip: @trip %>
+    </div>
   <div class="right-container">
 
     <div class="edit-trip-form">
@@ -93,10 +97,9 @@
     </div>
 
   </div>
+<% end %>
+
 </div>
-
-
-
 
 <%= javascript_pack_tag "map" %>
 <%= javascript_pack_tag "timeline" %>
