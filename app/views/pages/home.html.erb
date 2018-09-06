@@ -17,45 +17,29 @@
                 <i class="icon fas fa-calendar-alt"></i>
                 <p>
                   <label class="label-header">Personalized Trip Planning</label><br>
-                  <span>Plan your perfect trip based on your preferences and time</span>
+                  <span>Plan your perfect trip based on your preferences and time available</span>
                 </p>
               </div>
               <div class="free-trip-p-container">
                 <i class="icon fa fa-clock"></i>
                 <p>
-                  <label class="label-header">Custom Itineraries for you</label><br>
-                  <span>Our intuitive itineraries curated just for you by the smart algorithms</span>
+                  <label class="label-header">A fully customised itinerary</label><br>
+                  <span>Showing you how your time will be split between travel and the rest of your holiday</span>
                 </p>
               </div>
               <div class="free-trip-p-container">
                 <i class="icon fas fa-walking" style="margin-right: 40px;"></i>
                 <p>
-                  <label class="label-header">Tours & Experiences</label><br>
-                  <span>Make sure you don't miss out on the best things to eat, drink, see & do</span>
+                  <label class="label-header">Minimised travel time</label><br>
+                  <span>Let us optimise your itinerary's route to minimise time spent travelling</span>
                 </p>
               </div>
             </div>
-
-            <div class="home-right-container">
-              <div class="free-trip-p-container">
-                <i class="icon fa fa-bed"></i>
-                <p>
-                  <label class="label-header">Book your Stay</label><br>
-                  <span>Find the best places to stay that fits your comfort</span>
-                </p>
-              </div>
               <div class="free-trip-p-container">
                 <i class="icon fas fa-users"></i>
                 <p>
                   <label class="label-header">Plan a Trip with your Group</label><br>
                   <span>Easily plan a trip with your friends, family and colleagues</span>
-                </p>
-              </div>
-              <div class="free-trip-p-container">
-                <i class="icon fa fa-map-marker" style="margin-right: 32px;"></i>
-                <p>
-                  <label class="label-header">Your Trip Cost Calculator</label><br>
-                  <span>Worried about the budget! Know how much you will spend on your trip</span>
                 </p>
               </div>
             </div>
@@ -75,35 +59,36 @@
       <p>Hightlights From Tripper</p>
     </div>
 
-    <% current_user.trips.each do |trip| %>
-      <% location = [] %>
-      <%= location << trip.start_location %>
-    <% end %>
-
-
     <div class="trending-content">
       <div class="upper-block">
 
         <div class="container">
           <div class="row row-display">
 
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-                <div class="card-category">Popular</div>
-                <div class="card-description">
-                  <h2>Le Wagon Shanghai</h2>
-                  <p>Very cool city, the best</p>
-                </div>
-                <a class="card-link" href="#" ></a>
+              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1532695149815-4b88018cd70a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37ce43625009c1e56e495cadd29340b4&auto=format&fit=crop&w=700&q=80');">
+                <%= simple_form_for @trip do |f| %>
+                  <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
+                  <% start_date = Date.new(2018, 12, 23) %>
+                  <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+                  <% end_date = Date.new(2018, 12, 29) %>
+                  <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
+
+                  <%= f.button :submit, 'Christmas in Finland', class: "trending-card-btn" %>
+                <% end %>
               </div>
 
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-                <div class="card-category">Popular</div>
-                <div class="card-description">
-                  <h2>Le Wagon Shanghai</h2>
-                  <p>Very cool city, the best</p>
-                </div>
-                <a class="card-link" href="#" ></a>
+              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1526233185109-093c40faef34?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d692491bac3d6b95352c6df662197513&auto=format&fit=crop&w=1047&q=80');">
+                <%= simple_form_for @trip do |f| %>
+                  <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Morocco" } %>
+                  <% start_date = Date.new(2018, 05, 18) %>
+                  <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+                  <% end_date = Date.new(2018, 5, 28) %>
+                  <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
+
+                  <%= f.button :submit, 'Dessert Tour in Morocco', class: "trending-card-btn" %>
+                <% end %>
               </div>
+
 
           </div>
         </div>
@@ -115,32 +100,18 @@
         <div class="container">
           <div class="row row-display">
 
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-                <div class="card-category">Popular</div>
-                <div class="card-description">
-                  <h2>Le Wagon Shanghai</h2>
-                  <p>Very cool city, the best</p>
-                </div>
-                <a class="card-link" href="#" ></a>
-              </div>
+            <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522786742203-b90a32bde451?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34fb43f9fd4896c8ef4fbba115a37e80&auto=format&fit=crop&w=633&q=80');">
+              <%= simple_form_for @trip do |f| %>
+                <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
+                <% start_date = Date.new(2018, 04, 11) %>
+                <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+                <% end_date = Date.new(2018, 04, 21) %>
+                <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
 
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-                <div class="card-category">Popular</div>
-                <div class="card-description">
-                  <h2>Le Wagon Shanghai</h2>
-                  <p>Very cool city, the best</p>
-                </div>
-                <a class="card-link" href="#" ></a>
-              </div>
+                <%= f.button :submit, 'Bankhliday Away in South Africa', class: "trending-card-btn" %>
+              <% end %>
+            </div>
 
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-                <div class="card-category">Popular</div>
-                <div class="card-description">
-                  <h2>Le Wagon Shanghai</h2>
-                  <p>Very cool city, the best</p>
-                </div>
-                <a class="card-link" href="#" ></a>
-              </div>
 
           </div>
         </div>
@@ -152,23 +123,18 @@
         <div class="container">
           <div class="row row-display">
 
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-                <div class="card-category">Popular</div>
-                <div class="card-description">
-                  <h2>Le Wagon Shanghai</h2>
-                  <p>Very cool city, the best</p>
-                </div>
-                <a class="card-link" href="#" ></a>
-              </div>
+            <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1532695149815-4b88018cd70a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37ce43625009c1e56e495cadd29340b4&auto=format&fit=crop&w=700&q=80');">
+              <%= simple_form_for @trip do |f| %>
+                <%= f.input :start_location, :as => :hidden, :input_html => { :value => "Finland" } %>
+                <% start_date = Date.new(2018, 03, 23) %>
+                <%= f.input :start_date, :as => :hidden, :input_html => { :value => start_date } %>
+                <% end_date = Date.new(2018, 03, 29) %>
+                <%= f.input :end_date, :as => :hidden, :input_html => { :value => end_date } %>
 
-              <div class="trending-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-                <div class="card-category">Popular</div>
-                <div class="card-description">
-                  <h2>Le Wagon Shanghai</h2>
-                  <p>Very cool city, the best</p>
-                </div>
-                <a class="card-link" href="#" ></a>
-              </div>
+                <%= f.button :submit, 'Summersun in Thailand', class: "trending-card-btn" %>
+              <% end %>
+            </div>
+
 
           </div>
         </div>

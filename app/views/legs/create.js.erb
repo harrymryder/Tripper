@@ -2,4 +2,44 @@ if (document.getElementById("CLeg<%= @poi.id%>") !== null) {
   document.getElementById("CLeg<%= @poi.id%>").innerHTML = "<%= j render 'legs/destroy_button', trip: @trip, poi: @poi, leg: @leg %>";
 }
 
-document.querySelector('.timeline-container').innerHTML = "<%= j render 'trips/trip_timeline', pois: @pois %>"
+document.querySelector('.timeline-container').innerHTML = "<%= j render 'trips/trip_timeline', pois: @pois, first_poi: @first_poi %>"
+
+var mapElement = document.getElementById("map");
+// find new legs
+var legs = JSON.parse(mapElement.dataset.legs);
+// console.log(legs)
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlyeWRlciIsImEiOiJjamxkbDZ6eHYwOGxjM3dydjk4NGlyZHNtIn0.3I7XiB1k09ti1TZ3o2UH3A';
+
+var legDurations = [];
+// call api
+var api_input = "";
+legs.forEach ((leg) => {
+  api_input += `${leg[1]},${leg[0]};`
+});
+api_input = api_input.slice(0, -1);
+
+fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${api_input}?access_token=${mapboxgl.accessToken}`)
+  .then(response => response.json())
+  .then((data) => {
+    // console.log(data)
+    const tripLegs = data.trips[0].legs
+    tripLegs.forEach((leg) => {
+      const legDurationsInMinutes = leg.duration / 60
+      const legDistancesInKm = leg.distance / 1000
+      const minutes = legDurationsInMinutes % 60;
+      const hours = (legDurationsInMinutes - minutes) / 60;
+      const finalTime = hours + "hr " + Math.round(minutes) + "mins";
+      legDurations.push(finalTime)
+    })
+    // console.log(tripLegs)
+    // console.log(legDurations[0]);
+    var num = 0;
+    document.querySelectorAll(".duration").forEach(function(ptag){
+      ptag.innerHTML = `Travel time to next destination: <strong>${legDurations[num]}</strong>`;
+      num++;
+    });
+  });
+/////
+
+
+document.getElementById('map').setAttribute('data-legs', "<%= @leg_list.to_json %>")
