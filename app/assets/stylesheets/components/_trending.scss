@@ -11,6 +11,7 @@
     color: #FF6B6B;
     .upper-block {
       display: flex;
+
     }
     .middle-block {
       display: flex;
@@ -38,6 +39,7 @@
 
 .row-display {
   display: flex;
+  justify-content: space-around;
 }
 
 .trending-card-btn {

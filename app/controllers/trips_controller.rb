@@ -9,8 +9,8 @@ class TripsController < ApplicationController
     PointOfInterest.where(country: @trip.start_location).each do |poi|
       @markers << [poi.lat, poi.long, poi.name, poi.description, poi.url, poi.photo]
     end
-
     @legs = Leg.where(trip_id: params[:id])
+    # raise
     @leg_list = []
     @legs.each do |leg|
       geocode = [ leg.point_of_interest.lat, leg.point_of_interest.long ]
@@ -52,7 +52,6 @@ class TripsController < ApplicationController
   end
 
   def update
-
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
 

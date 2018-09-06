@@ -8,7 +8,7 @@
     </div>
 
     <%= simple_form_for @trip do |f| %>
-      <%= f.input :start_location, placeholder: 'Location', label:false,  input_html: { id: 'start-location-autocomplete' } %>
+      <%= f.input :start_location, placeholder: 'Country', label:false,  input_html: { id: 'start-location-autocomplete' } %>
 
       <%= f.input :start_date, placeholder: 'From', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
 
