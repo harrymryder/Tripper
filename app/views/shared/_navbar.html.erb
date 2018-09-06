@@ -11,7 +11,7 @@
 
       <!-- Links when logged in -->
       <%= link_to "About", "#{root_path}#about", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Dashboard", page_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Dashboard", dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%#= link_to "Q&A", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <% if user_signed_in? %>
         <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class:"navbar-wagon-item navbar-wagon-link" %>
