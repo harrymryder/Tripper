@@ -66,10 +66,11 @@
                      to($blue))
 }
 .dashboard-card-image {
-  background-size: cover;
-  width: 500px;
+  // background-size: cover;
+  width: 10;
   height: 300px;
   align: center;
+
   border-radius: 3px;
   cursor: pointer;
   box-shadow: 0 2px 7px rgba(62, 9, 11, 0.3);
@@ -80,6 +81,7 @@
   margin-bottom: 25px;
   box-shadow: 0 2px 7px rgba(62, 9, 11, 0.3);
   width: 500px;
+  height: 300px;
   position: relative;
   margin-left: 25px;
 }

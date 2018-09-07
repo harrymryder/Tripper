@@ -17,8 +17,13 @@
                 <div class="dashboard-card-button">
                   <%= link_to "Edit trip", trip_path(trip), class: "dashboard-card-btn" %>
                 </div>
-                <div class="dashboard-card-image" style="background-image: url('https://images.unsplash.com/photo-1517428401505-14146d0d739c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cf66674d50ec9b75de14ec3a5e53e0f5&auto=format&fit=crop&w=1500&q=80');">
+
+                <% @poi = PointOfInterest.find_by(country: trip.start_location) %>
+
+                <div class="dashboard-card-image" style="background-image: url('<%= @poi.photo %>');">
                 </div>
+
+
                 <div class="dashboard-card-trip-dates">
                   <p><%= trip.start_date %> - <%= trip.end_date %></p>
                 </div>

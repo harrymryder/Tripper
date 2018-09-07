@@ -22,7 +22,6 @@
                   </div>
                   <% @pois = PointOfInterest.where(country: trip.start_location) %>
                   <% @pois.each do |poi| %>
-                    <% @leg = Leg.where(point_of_interest_id: poi.id) %>
 
                     <% @legs = Leg.where(point_of_interest_id: poi.id) %>
                     <% @legs.each do |leg| %>
