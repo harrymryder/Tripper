@@ -289,3 +289,10 @@
 .trip-date-input {
   width: 150px !important;
 }
+
+.date-sticky {
+  position: fixed;
+  right: 0;
+  /* bottom: 0px; */
+  top: 20px;
+}
