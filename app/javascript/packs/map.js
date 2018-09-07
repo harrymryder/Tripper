@@ -207,10 +207,15 @@ map.on('load', function() {
     // location of the feature, with description HTML from its properties.
       markers.forEach((marker) => {
         map.on('click', `${marker[2]}`, (ev) => {
+          // console.log(cards)
           cards.forEach((card) => {
             // card.style.borderStyle = "none";
+          // console.log(card)
           })
-          let cardToLightUp = document.getElementById(`${marker[2]}`)
+
+
+          var cardToLightUp = document.getElementById(marker[2])
+          console.log(cardToLightUp)
           // cardToLightUp.style.borderStyle = "solid";
           // cardToLightUp.style.borderColor = "red";
           cardToLightUp.scrollIntoView({ block: 'end',  behavior: 'smooth' })

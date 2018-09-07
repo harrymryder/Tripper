@@ -9,8 +9,9 @@
         <% @pois.each do |poi| %>
           <div class="col-xs-12 ">
             <!-- IF POI ISN`T A LEG -->
+            <% @id_poi = poi.id %>
             <% if @trip.legs.find_by(point_of_interest_id: poi.id).nil? %>
-              <div class="card-live id="<% poi[:name] %>" data-name="<% poi[:name] %>">
+              <div class="card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
                 <div class="card-image" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 50%), url('<%= image_path poi.photo %>');">
                   <h5><%= poi.name %></h5>
                 </div>
@@ -28,10 +29,13 @@
             <% else %>
               <div class="card-live" id="<%= poi[:name] %>" data-name="<%= poi[:name] %>">
                 <div class="card-image" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 50%), url('<%= image_path poi.photo %>');">
+                  <% @id_poi = poi.id %>
                   <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
                   <h5><%= poi.name %></h5>
+                  <% leg = Leg.find_by(point_of_interest_id: poi.id) %>
                 </div>
                 <div class="collapse card-box" id="collapse-<%= poi[:name] %>">
+                  <% @id_poi = poi.id %>
                   <p class="open-description"><%= poi.description %></p>
                 </div>
                 <div class="card-btns">
