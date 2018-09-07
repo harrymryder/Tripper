@@ -84,8 +84,8 @@
       <h5>Edit Trip Dates</h5>
         <div class="form-inline">
         <%= simple_form_for @trip, remote: true do |f| %>
-          <%= f.input :start_date, placeholder: 'From', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
-          <%= f.input :end_date, placeholder: 'Until', label:false, as: :string, input_html: { class: 'flatpickr-input' } %>
+          <%= f.input :start_date, placeholder: 'From', label:false, as: :string, input_html: { class: 'flatpickr-input trip-date-input' } %>
+          <%= f.input :end_date, placeholder: 'Until', label:false, as: :string, input_html: { class: 'flatpickr-input trip-date-input' } %>
         </div>
           <%= f.submit 'Confirm', class: 'edit-trip-submit' %>
         <% end %>
@@ -101,7 +101,6 @@
 
   </div>
 <%# end %>
-
 </div>
 
 
