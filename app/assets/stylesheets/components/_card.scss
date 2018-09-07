@@ -109,16 +109,16 @@
   border-radius: 5px;
 }
 .read-more-btn {
-  background-color: $red;
-  // color: $red !important;
+  background: none;
+  color: $red !important;
   // font-weight: normal;
   border: 1px $red solid !important;
   bottom: 10px;
   left: 10px;
   &:hover {
     background: none;
-    color: $red !important;
-    border: 1px $red solid !important;
+    color: $blue !important;
+    border: 1px $blue solid !important;
   }
 }
 .read-less-btn {
@@ -138,8 +138,8 @@
   bottom: 10px;
   right: 10px;
   &:hover {
-    background: none;
-    color: $red !important;
+    background-color: #fc5555;
+    color: $light-gray !important;
     border: 1px $red solid !important;
   }
 }
@@ -149,9 +149,9 @@
   right: 10px;
   background-color: $secondary-color;
   &:hover {
-    background: none;
-    color: $secondary-color !important;
-    border: 1px $secondary-color solid !important;
+    background-color: #6fb1bc;
+    // color: $secondary-color !important;
+    border: 1px #6fb1bc solid !important;
   }
 }
 // .card-box-plus{
